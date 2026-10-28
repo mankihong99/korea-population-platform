@@ -1,0 +1,98 @@
+[
+  {
+    "id": "welfare:WLF00006794",
+    "areas": [
+      {
+        "province": "충청남도",
+        "district": ""
+      }
+    ],
+    "quote": "충청남도에 주소를 두고",
+    "residence": "공고일 현재 주소 요건",
+    "reason": "복지로 상세 API의 지원대상 문구를 대조하여 지역 범위 확인. 그 밖의 자격은 원문 확인.",
+    "sourceUrl": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00006794&wlfareInfoReldBztpCd=02",
+    "reviewer": "Codex 원문 대조",
+    "reviewedAt": "2026-10-28",
+    "fingerprint": "a59113a141ad025bba193b0c4d58d71b20220fec23ee69d5dbf385e76d20f15c"
+  },
+  {
+    "id": "welfare:WLF00002550",
+    "areas": [
+      {
+        "province": "울산광역시",
+        "district": "동구"
+      }
+    ],
+    "quote": "울산광역시 동구에 거주 및 주민등록상에 등재되어 있어야 함.",
+    "residence": "출생일 1개월 전부터 거주·주민등록",
+    "reason": "복지로 상세 API의 지원대상 문구를 대조하여 지역 범위 확인. 그 밖의 자격은 원문 확인.",
+    "sourceUrl": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00002550&wlfareInfoReldBztpCd=02",
+    "reviewer": "Codex 원문 대조",
+    "reviewedAt": "2026-10-28",
+    "fingerprint": "6e2ccdd12a651a7f7c84c8a0e04dfc7f33298200933ee12a40480cb5104407f1"
+  },
+  {
+    "id": "welfare:WLF00001734",
+    "areas": [
+      {
+        "province": "대전광역시",
+        "district": "중구"
+      }
+    ],
+    "quote": "대전광역시 중구에 출생 등록한",
+    "residence": "출생 등록 지역 요건 (일반 거주 요건과 다름)",
+    "reason": "복지로 상세 API의 지원대상 문구를 대조하여 지역 범위 확인. 그 밖의 자격은 원문 확인.",
+    "sourceUrl": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00001734&wlfareInfoReldBztpCd=02",
+    "reviewer": "Codex 원문 대조",
+    "reviewedAt": "2026-10-28",
+    "fingerprint": "7a70d958d8983160c0f19f362cc4d242c22b29ef0f48eaa1599f9cd59aec137d"
+  },
+  {
+    "id": "gov24:420000000148",
+    "areas": [
+      {
+        "province": "강원특별자치도",
+        "district": "강릉시"
+      }
+    ],
+    "quote": "강릉시에 거주하는",
+    "residence": "강릉시 거주 벼재배 농업인·생산자단체 등, 면적 요건 별도",
+    "reason": "정부24 API 지원대상 원문에서 강릉시 거주 또는 주민등록 조건 대조. 기타 지원 조건과 신청기간은 원문 확인.",
+    "sourceUrl": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1000525&bnefType=all&svcId=420000000148",
+    "reviewer": "Codex 원문 대조",
+    "reviewedAt": "2026-10-28",
+    "fingerprint": "f23f59f6a97010f5d79c5814d64b4072a22cb2f8cbc426f9ed3fb6cb89b6d4e5"
+  },
+  {
+    "id": "gov24:420000000160",
+    "areas": [
+      {
+        "province": "강원특별자치도",
+        "district": "강릉시"
+      }
+    ],
+    "quote": "강릉시 관내 거주하는 저소득주민",
+    "residence": "강릉시 거주 저소득 가구, 보험료·세대 조건 별도",
+    "reason": "정부24 API 지원대상 원문에서 강릉시 거주 또는 주민등록 조건 대조. 기타 지원 조건과 신청기간은 원문 확인.",
+    "sourceUrl": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1002168&bnefType=all&svcId=420000000160",
+    "reviewer": "Codex 원문 대조",
+    "reviewedAt": "2026-10-28",
+    "fingerprint": "1712359290d1fa7566e63ae70bacccdaba00ed36af02344e20d13130977f8bf0"
+  },
+  {
+    "id": "gov24:420000000162",
+    "areas": [
+      {
+        "province": "강원특별자치도",
+        "district": "강릉시"
+      }
+    ],
+    "quote": "강릉시 주민등록된 부부",
+    "residence": "강릉시 주민등록 부부, 연령·시술·신청기간 조건 별도",
+    "reason": "정부24 API 지원대상 원문에서 강릉시 거주 또는 주민등록 조건 대조. 기타 지원 조건과 신청기간은 원문 확인.",
+    "sourceUrl": "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=1002189&bnefType=all&svcId=420000000162",
+    "reviewer": "Codex 원문 대조",
+    "reviewedAt": "2026-10-28",
+    "fingerprint": "9053d822aebf57372e195c1baa502abef2a91637f502d966a932bf72bdf21d27"
+  }
+]

@@ -1,0 +1,26 @@
+.policy-panel { margin-top: 28px; }
+.policy-sources { display: grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); gap: 12px; margin: 20px 0; }
+.policy-sources > div { background: #f8fafc; padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; }
+.policy-sources small { display: block; color: #475569; line-height: 1.6; margin-top: 8px; }
+.policy-panel a { color: #155eef; }
+.policy-filters { display: flex; flex-wrap: wrap; gap: 14px; }
+.policy-filters label { display: grid; gap: 6px; font-size: 14px; flex: 1; min-width: 180px; }
+.policy-filters input, .policy-filters select { padding: 10px; border: 1px solid #94a3b8; border-radius: 6px; background: white; color: #172b4d; }
+.policy-empty { padding: 24px; background: #f8fafc; border-radius: 10px; line-height: 1.8; }
+.policy-panel article p { white-space: pre-line; overflow-wrap: anywhere; }
+.policy-panel details { margin: 14px 0; }
+.policy-panel summary { cursor: pointer; }
+.policy-panel { scroll-margin-top: 24px; }
+.policy-browse-entry { margin: 28px 0; padding: 20px; border: 1px solid #d0d5dd; border-radius: 12px; background: #f8fafc; }
+.policy-browse-button { padding: 12px 16px; background: white; color: #155eef; border: 1px solid #155eef; border-radius: 8px; cursor: pointer; }
+.region-policy-preview { margin: 20px 0; padding: 18px; border: 1px solid #bfdbfe; border-radius: 12px; background: #eff6ff; }
+.region-policy-preview h3 { margin-top: 0; }
+.region-policy-preview li { margin: 8px 0; line-height: 1.6; }
+.region-policy-preview a { display: inline-block; padding: 10px 0; color: #155eef; font-weight: 700; }
+.region-policy-preview small { display: block; color: #475569; line-height: 1.6; }
+.policy-layout { display: grid; grid-template-columns: minmax(320px, 1fr) minmax(360px, 1.2fr); gap: 24px; align-items: start; }
+.policy-layout .policy-panel { margin-top: 0; min-width: 0; }
+.policy-map { position: sticky; top: 16px; }
+.policy-map h3 { padding: 0 18px; }
+.region-policy-preview button { border: 1px solid #155eef; border-radius: 8px; background: #155eef; color: white; padding: 12px 16px; cursor: pointer; }
+@media(max-width:900px) { .policy-layout { grid-template-columns: minmax(0,1fr); } .policy-map { position: static; } }

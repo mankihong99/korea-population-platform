@@ -1,1 +1,24 @@
-{"scripts":{"dev":"vite","build":"vite build","preview":"vite preview"},"dependencies":{"@vitejs/plugin-react":"latest","vite":"latest","react":"latest","react-dom":"latest","recharts":"latest","lucide-react":"latest"},"devDependencies":{}}
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "policies:check": "node --env-file-if-exists=.env.local scripts/sync-policies.mjs --check",
+    "policies:sync": "node --env-file-if-exists=.env.local scripts/sync-policies.mjs",
+    "policies:details": "node --env-file-if-exists=.env.local scripts/enrich-policies.mjs",
+    "policies:refresh": "node --env-file-if-exists=.env.local scripts/refresh-policies.mjs",
+    "policies:audit": "node scripts/audit-policies.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "fast-xml-parser": "^5.11.2",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "recharts": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1"
+  }
+}

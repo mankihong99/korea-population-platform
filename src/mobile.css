@@ -1,0 +1,58 @@
+.mobile-map-toggle,.map-touch-controls{display:none}
+.policy-loading{padding:24px;text-align:center}
+.grid>*{min-width:0}
+@media(pointer:coarse){
+  .map-touch-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0;font-size:12px;line-height:1.6}
+  .map-touch-controls button{min-height:44px;padding:10px 14px;border:1px solid #155eef;border-radius:8px;background:white;color:#155eef}
+  .map-touch-controls button[aria-pressed=true]{background:#155eef;color:white}
+  .korea-map.can-pan{touch-action:pan-y;cursor:default}
+  .korea-map.can-pan.touch-pan-enabled{touch-action:none}
+}
+@media(max-width:600px){
+  header{height:auto;min-height:64px;padding:12px 16px;position:static}
+  header span{display:block;margin:4px 0 0;font-size:12px}
+  .population-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 12px;margin-top:16px}
+  .population-modes button{min-width:0;padding:12px;min-height:84px;overflow-wrap:anywhere}
+  .population-modes button[aria-pressed=true]{padding:11px}
+  .population-modes button strong{font-size:14px;line-height:1.5}
+  .population-modes button span{font-size:11px}
+  .hero{padding:20px 12px}
+  .stats{gap:8px}
+  .stats div{padding:12px 16px}
+  .stats strong{font-size:22px}
+  .stats small{font-size:12px;line-height:1.6}
+  .mode-explanation,.maptitle,.notice,aside{overflow-wrap:anywhere;word-break:keep-all}
+  .mode-explanation h2{font-size:21px}
+  .maptitle h2{font-size:19px;line-height:1.5}
+  .maptitle p{line-height:1.7}
+  aside{padding:16px}
+  .numbers{gap:8px}.numbers div{padding:10px}.numbers b{overflow-wrap:anywhere}
+  .year-controls{margin:8px 12px 16px;padding:12px}
+  .year-heading label{flex-wrap:wrap}
+  .year-shortcuts button{min-height:44px}
+  .year-controls .timeline{gap:6px}
+  .year-controls .timeline>span{font-size:12px}
+  .map-controls{display:flex;flex-wrap:wrap;gap:10px}
+  .map-controls label{min-width:0;width:100%;flex:1 1 100%}
+  .map-controls select{width:100%;max-width:100%;min-width:0}
+  select,input[type=search]{font-size:16px!important;min-height:44px;max-width:100%}
+  .forecast-period{align-items:stretch}.forecast-period select{width:100%}
+  .map-zoom button{min-width:44px;min-height:44px}
+  .mobile-map-toggle{display:block;width:100%;min-height:44px;border:1px solid #155eef;color:#155eef;background:#eff6ff;border-radius:8px;margin:12px 0}
+  .mobile-map-collapsed .korea-map,.mobile-map-collapsed .map-touch-controls,.mobile-map-collapsed .map-note,.mobile-map-collapsed .map-source,.mobile-map-collapsed .district-summary,.mobile-map-collapsed .map-zoom{display:none}
+  .policy-view{padding:20px 12px;min-width:0}
+  .policy-view .policy-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+  .policy-view .policy-map{position:static}
+  .policy-view .policy-panel{padding:16px;margin:0 0 16px;width:100%;min-width:0}
+  .policy-view .policy-panel h2{font-size:20px;line-height:1.5;overflow-wrap:anywhere}
+  .policy-view .policy-sources{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .policy-view .policy-sources>div{padding:10px;font-size:12px;overflow-wrap:anywhere}
+  .policy-view .policy-filters{display:grid;grid-template-columns:minmax(0,1fr)}
+  .policy-view .policy-filters label{min-width:0}
+  .policy-view .policy-panel article{padding:14px;margin:12px 0;display:block;overflow-wrap:anywhere}
+  .policy-view .policy-panel article h3{font-size:17px;line-height:1.6}
+  .policy-view .policy-panel article p{font-size:14px;line-height:1.7}
+  .policy-view summary{padding:12px 0;min-height:44px}
+  .policy-view article a{display:inline-block;min-height:44px;padding:12px 0}
+  .policy-browse-button{min-height:44px;max-width:100%;white-space:normal}
+}

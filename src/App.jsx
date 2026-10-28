@@ -1,3 +1,119 @@
-import React,{useEffect,useMemo,useState}from'react';import{Play,Pause,MapPin,Users,TrendingDown,TrendingUp,Search}from'lucide-react';import{LineChart,Line,XAxis,YAxis,Tooltip,ResponsiveContainer}from'recharts';import{regions,policies,pop}from'./data/data';
-const fmt=n=>n.toLocaleString('ko-KR')+'천 명';
-export default function App(){const[year,setYear]=useState(2026),[playing,setPlaying]=useState(false),[selected,setSelected]=useState(regions[5]),[cat,setCat]=useState('청년');useEffect(()=>{if(!playing)return;let id=setInterval(()=>setYear(y=>y>=2026?1970:y+1),180);return()=>clearInterval(id)},[playing]);const current=pop(selected,year);const prev=pop(selected,Math.max(1970,year-1));const rate=prev?((current-prev)/prev*100):0;const total=useMemo(()=>regions.reduce((s,r)=>s+pop(r,year),0),[year]);const down=regions.filter(r=>pop(r,year)<r.base).length;const chart=[];for(let y=1970;y<=2026;y+=4)chart.push({year:y,pop:pop(selected,y)});if(chart.at(-1).year!==2026)chart.push({year:2026,pop:pop(selected,2026)});let ps=policies[selected.name]||policies['경북'];return <div className="app"><header><div><b>대한민국 인구변화</b><span>& 지역정착 정보 플랫폼</span></div><div className="search"><Search size={17}/> 지역 검색</div></header><main><section className="hero"><div className="stats"><div><small>선택 연도</small><strong>{year}</strong></div><div><small>표시 지역 총인구</small><strong>{fmt(total)}</strong></div><div><small>1970 대비 감소 지역</small><strong>{down}곳</strong></div></div><div className="grid"><div className="mapcard"><div className="maptitle"><div><h2>지역별 인구 변화 지도</h2><p>지역을 클릭해 상세 정보와 정착 지원정책을 확인하세요.</p></div><div className="legend"><i className="up"/>증가 <i className="down"/>감소</div></div><div className="map"><div className="peninsula"/>{regions.map(r=>{let change=(pop(r,year)-r.base)/r.base;return <button key={r.name} onClick={()=>setSelected(r)} className={'region '+(change>=0?'inc':'dec')+(selected.name===r.name?' active':'')} style={{left:r.x+'%',top:r.y+'%'}}><span>{r.name}</span><small>{change>=0?'+':''}{(change*100).toFixed(1)}%</small></button>})}</div><div className="timeline"><button onClick={()=>setPlaying(!playing)}>{playing?<Pause/>:<Play/>}</button><span>1970</span><input type="range" min="1970" max="2026" value={year} onChange={e=>setYear(+e.target.value)}/><span>2026</span></div><div className="notice">※ 1차 프로토타입은 기능 검증용 샘플 데이터를 사용합니다. 실제 서비스에서는 KOSIS·SGIS 데이터로 교체하세요.</div></div><aside><div className="location"><MapPin/><div><small>선택 지역</small><h2>{selected.name}</h2></div></div><div className="numbers"><div><Users/><small>{year} 인구</small><b>{fmt(current)}</b></div><div>{rate<0?<TrendingDown/>:<TrendingUp/>}<small>전년 대비</small><b>{rate>=0?'+':''}{rate.toFixed(2)}%</b></div></div><div className="chart"><h3>장기 인구 변화</h3><ResponsiveContainer width="100%" height={180}><LineChart data={chart}><XAxis dataKey="year"/><YAxis hide/><Tooltip/><Line type="monotone" dataKey="pop" strokeWidth={3} dot={false}/></LineChart></ResponsiveContainer></div><div className="badge">{current<selected.base?'인구감소 지역':'인구증가 지역'}</div></aside></div></section><section className="policy"><div><h2>{selected.name} 지역정착 지원정책</h2><p>정책 카테고리를 선택해 지원 내용을 확인할 수 있습니다.</p></div><div className="tabs">{['청년','귀농귀촌','주거','출산·육아','이주·정착'].map(x=><button className={cat===x?'on':''} onClick={()=>setCat(x)}>{x}</button>)}</div>{ps.filter(p=>p.cat===cat).map(p=><article><div><small>{p.cat}</small><h3>{p.title}</h3><p>{p.desc}</p><em>프로토타입 예시 데이터 · 실제 정책 연동 예정</em></div><button>자세히 보기 →</button></article>)}</section></main><footer>대한민국 지역별 인구 변화 및 지역정착 정보 시각화 프로젝트 · 1차 Prototype</footer></div>}
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { MapPin, Users, TrendingDown, TrendingUp } from 'lucide-react';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import YearControls from './YearControls';
+import KoreaMap from './KoreaMap';
+import LongTermView from './LongTermView';
+import ForecastView from './ForecastView';
+import { regions, pop, years, baselineYear, latestYear, populationMetadata } from './data/data';
+import PolicyLink from './PolicyLink';
+import { populationChange, changeLabel } from './data/population-color';
+import { longTermByCode } from './data/long-term';
+
+const fmt = value => value === null ? '자료 없음' : value.toLocaleString('ko-KR') + '명';
+const PolicyView = lazy(() => import('./PolicyView'));
+
+export default function App() {
+  const [mode, setMode] = useState('long-term');
+  const [policyArea, setPolicyArea] = useState('');
+  const [districtSelection, setDistrictSelection] = useState(null);
+  const [provinceSelection, setProvinceSelection] = useState('');
+  const selectDistrict = region => {
+    setDistrictSelection(region);
+    setPolicyArea(region?.sourceNames[latestYear] || '');
+  };
+  const selectProvince = (code, name) => {
+    setProvinceSelection(code);
+    setDistrictSelection(null);
+    setPolicyArea(name || '');
+  };
+  const openPolicies = () => {
+    if (mode === 'long-term') {
+      setPolicyArea(longTermByCode[provinceSelection]?.name || '');
+      setDistrictSelection(null);
+    } else if (mode === 'district' || mode === 'forecast') {
+      setPolicyArea(districtSelection?.sourceNames[latestYear] || '');
+    }
+    setMode('policies');
+  };
+  return <div className="app">
+    <header><div><b>대한민국 인구변화</b><span>& 지역정착 정보 플랫폼</span></div></header>
+    <nav className="population-modes" aria-label="인구 통계 모드">
+      <button type="button" aria-pressed={mode === 'long-term'} onClick={() => setMode('long-term')}><strong>장기 변화</strong><span>시·도 · 1970~2025 · 추계인구</span></button>
+      <button type="button" aria-pressed={mode === 'district'} onClick={() => setMode('district')}><strong>시·군·구 상세</strong><span>2014~2025 · 주민등록인구</span></button>
+      <button type="button" aria-pressed={mode === 'forecast'} onClick={() => setMode('forecast')}><strong>2050 인구 전망</strong><span>시·군·구 · 2026~2050 · 참고용 예상</span></button>
+      <button type="button" aria-pressed={mode === 'policies'} onClick={openPolicies}><strong>지역정착 지원정책</strong><span>지역별 혜택 · 지원대상 · 신청 안내</span></button>
+    </nav>
+    {mode === 'long-term' ? <LongTermView initialCode={provinceSelection} onRegionChange={selectProvince} onOpenPolicies={openPolicies} /> : mode === 'district' ? <DistrictView initialSelected={districtSelection} onRegionChange={selectDistrict} onOpenPolicies={openPolicies} /> : mode === 'forecast' ? <ForecastView initialSelected={districtSelection} onRegionChange={selectDistrict} onOpenPolicies={openPolicies} /> : <Suspense fallback={<p className="policy-loading" role="status">정책 자료를 불러오는 중입니다…</p>}><PolicyView area={policyArea} selected={districtSelection} onSelect={selectDistrict} /></Suspense>}
+  </div>;
+}
+
+export function DistrictView({ initialSelected = null, onRegionChange, onOpenPolicies } = {}) {
+  const [year, setYear] = useState(latestYear);
+  const [playing, setPlaying] = useState(false);
+  const [selected, updateSelected] = useState(initialSelected);
+  const setSelected = region => { updateSelected(region); onRegionChange?.(region); };
+  useEffect(() => {
+    if (!playing) return;
+    const timer = setInterval(() => setYear(value => years[(years.indexOf(value) + 1) % years.length]), 700);
+    return () => clearInterval(timer);
+  }, [playing]);
+
+  const current = pop(selected, year);
+  const previous = pop(selected, year - 1);
+  const rate = current !== null && previous > 0 ? (current - previous) / previous * 100 : null;
+  const change = populationChange(selected, year);
+  const chart = years.map(value => ({ year: value, population: pop(selected, value) }));
+  const down = regions.filter(region => populationChange(region, year) < 0).length;
+  const title = selected?.sourceNames[year] || selected?.name;
+
+  return <div className="app">
+    <main>
+      <section className="hero">
+        <div className="mode-explanation"><strong>시·군·구 상세 · 실제 주민등록인구</strong><p>행정안전부의 매년 12월 말 공표값입니다. 장기 모드의 추계인구와는 별도 통계이며, 색상은 2014년을 기준으로 계산합니다.</p></div>
+        <div className="stats">
+          <div><small>선택 시점 · 연말 기준</small><strong>{year}년 12월</strong></div>
+          <div><small>전국 주민등록인구 · 외국인 제외</small><strong>{fmt(populationMetadata.nationalTotals[year] ?? null)}</strong></div>
+          <div><small>{baselineYear}년 대비 감소 구역 · 총 {regions.length}개</small><strong>{down}곳</strong></div>
+        </div>
+        <div className="grid">
+          <div className="mapcard">
+            <div className="maptitle"><div><h2>시·군·구별 인구 변화 지도</h2><p>지역을 선택하면 해당 시·군·구의 실제 연도별 인구를 확인할 수 있습니다.</p></div></div>
+            <YearControls year={year} playing={playing} onYearChange={setYear} onPlayingChange={setPlaying} />
+            <KoreaMap selected={selected} onSelect={setSelected} year={year} />
+            <div className="notice population-source">
+              인구 출처: <a href={populationMetadata.sourceUrl} target="_blank" rel="noreferrer">행정안전부 주민등록 인구통계</a><br />
+              {baselineYear}~{latestYear}년 매년 12월 말 공표값 · 단위: 명 · 자료 확인: {populationMetadata.retrievedAt}<br />
+              현재 지도 250개 구역(일반구 포함)의 인구가 모두 확보되는 첫 연도인 {baselineYear}년을 공통 기준으로 사용합니다.<br />
+              2015년부터 재외국민이 포함되어, 2014년과의 비교에는 집계 범위 변경의 영향도 있습니다.
+            </div>
+          </div>
+          <aside>
+            {selected ? <>
+              <div className="location"><MapPin /><div><small>선택 시·군·구 · 해당 연도 명칭</small><h2>{title}</h2></div></div>
+              <div className="numbers">
+                <div><Users /><small>{year}년 12월 인구</small><b>{fmt(current)}</b></div>
+                <div>{rate !== null && rate < 0 ? <TrendingDown /> : <TrendingUp />}<small>전년 12월 대비</small><b>{rate === null ? '비교 자료 없음' : `${rate > 0 ? '+' : ''}${rate.toFixed(2)}%`}</b></div>
+              </div>
+              <div className="chart"><h3>연말 주민등록인구 추이</h3>
+                <ResponsiveContainer width="100%" height={200}>
+                  <LineChart data={chart} margin={{ left: 0, right: 12, top: 8, bottom: 0 }}>
+                    <XAxis dataKey="year" type="number" domain={[baselineYear, latestYear]} allowDecimals={false} />
+                    <YAxis width={50} tickFormatter={value => `${(value / 10000).toFixed(0)}만`} />
+                    <Tooltip labelFormatter={value => `${value}년 12월`} formatter={value => [fmt(value), '주민등록인구']} />
+                    <ReferenceLine x={year} stroke="#667085" strokeDasharray="3 3" />
+                    <Line type="linear" dataKey="population" name="주민등록인구" stroke="#155eef" strokeWidth={2} dot={{ r: 3 }} connectNulls={false} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+              <div className={'badge population-badge ' + (change === null || change === 0 ? 'neutral' : change > 0 ? 'growth' : 'decline')}>{changeLabel(change)}</div>
+              <p className="population-caution">각 연도 행정구역 기준 공표값입니다. 경계 조정·통합·편입에 따른 인구 변동도 포함됩니다.</p>
+            </> : <div className="empty-region"><MapPin /><h2>시·군·구를 선택하세요</h2><p>지도나 지역 목록에서 선택하면 해당 지역의 실제 인구와 연도별 추이를 표시합니다.</p></div>}
+            <PolicyLink area={selected?.sourceNames[latestYear] || ''} onOpen={onOpenPolicies} />
+          </aside>
+        </div>
+      </section>
+    </main>
+    <footer>대한민국 지역별 인구 변화 · 행정안전부 주민등록인구 {baselineYear}~{latestYear}년</footer>
+  </div>;
+}

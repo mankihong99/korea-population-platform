@@ -1,0 +1,4129 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="ko">
+<head>
+	
+
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>인구로보는대한민국</title>
+	
+    <script>
+	
+		/* 전역 변수 */
+		var context      = "/visual";
+		var LoginServer = "https://kosis.kr";
+		var context     = "/visual";
+
+	</script>
+	
+	<link rel="stylesheet" href="/visual/ext/css/populationKorea2/sub.css">
+	
+	<script src="/visual/ext/js/populationKorea2/jquery-3.3.1.min.js"></script>
+	<script src="/visual/ext/js/populationKorea2/simplebar.js"></script>
+	<script src="/visual/ext/js/populationKorea2/simplebar.min.js"></script>
+	<script src="/visual/ext/js/populationKorea2/action.js"></script>
+	<script src="/visual/ext/js/linkScript.js"></script>
+	<script src="/visual/ext/js/echart/echarts.min.js"></script>
+	<script src="/visual/ext/js/commonVis/snsCall.js"></script>
+	<script src="/visual/ext/js/commonVis/html2canvas.js"></script>
+	<script src="/visual/ext/js/commonVis/CommonVis.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js" ></script>
+
+	<script src="/visual/ext/js/populationKorea2/populationDashBoard.js?version=0.1"></script>
+	
+	<script>
+	var pageGubun = "populationDashBoardDetail";
+	
+	
+	$(document).ready(function(){
+		
+		$(".GNB>a").eq(0).addClass("M_on");
+		var areaNm = decodeURI("");
+		$('.areaNmdraw').val(areaNm);
+		if(areaNm != ""){
+			$('.areaName').val(areaNm);
+		}
+		
+		var prdDe = ["1970","1971","1972","1973","1974","1975","1976","1977","1978","1979","1980","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030","2031","2032","2033","2034","2035","2036","2037","2038","2039","2040","2041","2042","2043","2044","2045","2046","2047","2048","2049","2050","2051","2052"]
+
+		var datas = [
+		
+		{
+			name: '총인구 (추계 기준)',
+			type: "bar",
+			
+			data: [282596,299698,317409,335799,355047,374958,404576,436035,469631,505843,545538,571376,597995,625084,651499,676257,686049,703284,730661,762359,794065,829234,865654,902858,940877,979606,998430,1015754,1023077,1026735,1035658,1046883,1056936,1062369,1067380,1071339,1076340,1079299,1091665,1098027,1099035,1112079,1124659,1137472,1151171,1163719,1166202,1158787,1152725,1145761,1139069,1125167,1113508,1106306,1102846,1094165,1085657,1077377,1069169,1060979,1052714,1044300,1035731,1026981,1018036,1008943,999720,990425,981048,971518,961845,952021,942032,931863,921493,910875,899945,888666,877058,865101,852811,840258,827433,],
+			color : ''
+			
+		},
+		
+		{
+			name: '총인구 (추계 기준, 남자)',
+			type: "bar",
+			
+			data: [144194,153335,162640,172194,182247,192340,208029,224801,242774,262180,283361,296602,310318,324335,337998,350826,355942,364868,379213,395855,412832,430990,449825,469098,488792,508820,518006,526644,529087,530018,534677,541403,546969,550588,553383,554975,558244,560664,568153,571366,571568,578008,584553,591049,598273,605412,605913,600998,597507,593106,587960,580679,574581,571612,570748,566336,562012,557812,553683,549551,545363,541094,536755,532320,527762,523113,518392,513596,508712,503721,498628,493461,488200,482850,477417,471896,466256,460490,454613,448605,442453,436197,429855,],
+			color : ''
+			
+		},
+		
+		{
+			name: '총인구 (추계 기준, 여자)',
+			type: "bar",
+			
+			data: [138402,146363,154769,163605,172800,182618,196547,211234,226857,243663,262177,274774,287677,300749,313501,325431,330107,338416,351448,366504,381233,398244,415829,433760,452085,470786,480424,489110,493990,496717,500981,505480,509967,511781,513997,516364,518096,518635,523512,526661,527467,534071,540106,546423,552898,558307,560289,557789,555218,552655,551109,544488,538927,534694,532098,527829,523645,519565,515486,511428,507351,503206,498976,494661,490274,485830,481328,476829,472336,467797,463217,458560,453832,449013,444076,438979,433689,428176,422445,416496,410358,404061,397578,],
+			color : ''
+			
+		},
+		
+		];
+		
+		drawMainChart(prdDe, datas);
+		
+		
+		
+		
+			
+			var eChart3737 = echarts.init($("#chartDiv_3737")[0]);
+			
+			
+			 
+				
+		var eChart3737_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2024","2025","2026","2027","2028"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'총인구 (추계 기준)'
+																						, data:[1102846,1094165,1085657,1077377,1069169]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#7f35c7'
+																						
+																						}
+				
+			
+			
+			
+			
+		
+			
+			
+			 
+				
+				,
+																						{
+																						  name:'총인구 (추계 기준, 남자)'
+																						, data:[570748,566336,562012,557812,553683]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#35adc7'
+																						
+																						}
+				
+			
+			
+			
+			
+		
+			
+			
+			 
+				
+				,
+																						{
+																						  name:'총인구 (추계 기준, 여자)'
+																						, data:[532098,527829,523645,519565,515486]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#0b70c6'
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3737_Option && eChart3737.setOption(eChart3737_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3737.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3738 = echarts.init($("#chartDiv_3738")[0]);
+			
+			
+			 
+				
+		var eChart3738_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2024","2025","2026","2027","2028"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'인구성장률'
+																						, data:[-.31,-.79,-.78,-.77,-.76]
+																						, type: 
+																						
+																						
+																						
+																						'line'
+																						, color : '#C1592C'
+																						
+																						,symbolSize : 10
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3738_Option && eChart3738.setOption(eChart3738_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3738.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3741 = echarts.init($("#chartDiv_3741")[0]);
+			
+			
+			 
+				
+		var eChart3741_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2024","2025","2026","2027","2028"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'생산연령인구 (15-64세)'
+																						, data:[790173,774486,758308,745067,730622]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						, color : '#007f7f'
+																						
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3741_Option && eChart3741.setOption(eChart3741_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3741.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3742 = echarts.init($("#chartDiv_3742")[0]);
+			
+			
+			 
+				
+		var eChart3742_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2024","2025","2026","2027","2028"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'고령인구 (65세 이상)'
+																						, data:[181492,195050,210214,222229,235261]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#38ce7e'
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3742_Option && eChart3742.setOption(eChart3742_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3742.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3743 = echarts.init($("#chartDiv_3743")[0]);
+			
+			
+			 
+				
+		var eChart3743_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2024","2025","2026","2027","2028"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'유소년인구 (14세 이하)'
+																						, data:[131181,124629,117135,110081,103286]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#7f8e02'
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3743_Option && eChart3743.setOption(eChart3743_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3743.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3745 = echarts.init($("#chartDiv_3745")[0]);
+			
+			
+			 
+				
+		var eChart3745_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2024","2025","2026","2027","2028"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'청소년인구 (9-24세)'
+																						, data:[167,163,160,157,153]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#efb005'
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3745_Option && eChart3745.setOption(eChart3745_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3745.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3746 = echarts.init($("#chartDiv_3746")[0]);
+			
+			
+			 
+				
+		var eChart3746_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2024","2025","2026","2027","2028"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'청년인구 (19-34세)'
+																						, data:[199,192,186,180,174]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#d25828'
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3746_Option && eChart3746.setOption(eChart3746_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3746.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3747 = echarts.init($("#chartDiv_3747")[0]);
+			
+			
+			 
+				
+		var eChart3747_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2024","2025","2026","2027","2028"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'남녀 성비'
+																						, data:[107.3,107.3,107.3,107.4,107.4]
+																						, type: 
+																						
+																						
+																						
+																						'line'
+																						, color : '#1fbc1f'
+																						
+																						,symbolSize : 10
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3747_Option && eChart3747.setOption(eChart3747_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3747.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3748 = echarts.init($("#chartDiv_3748")[0]);
+			
+			
+			 
+				
+		var eChart3748_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2026.05","2026.06","2026.07","2026.08","2026.09"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'주민등록인구'
+																						, data:[1087466,1087089,1086756,1086373,1086077]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						, color : '#003399'
+																						
+																						
+																						}
+				
+			
+			
+			
+			
+		
+			
+			
+			 
+				
+				,
+																						{
+																						  name:'주민등록인구(남)'
+																						, data:[560750,560549,560290,560121,559903]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						, color : '#006600'
+																						
+																						
+																						}
+				
+			
+			
+			
+			
+		
+			
+			
+			 
+				
+				,
+																						{
+																						  name:'주민등록인구(여)'
+																						, data:[526716,526540,526466,526252,526174]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						, color : '#0066CC'
+																						
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3748_Option && eChart3748.setOption(eChart3748_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3748.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3749 = echarts.init($("#chartDiv_3749")[0]);
+			
+			
+			 
+				
+		var eChart3749_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2024","2025","2026","2027","2028"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'총가구 (추계기준)'
+																						, data:[459363,461995,464656,467302,468608]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#fc5047'
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3749_Option && eChart3749.setOption(eChart3749_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3749.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart5429 = echarts.init($("#chartDiv_5429")[0]);
+			
+			
+			
+			
+				
+		var eChart5429_Option = {
+																			tooltip: {
+																				trigger: 'item'
+																				, confine : true
+// 																				,position : function (point, params, dom, rectr, size){
+// 																					var x= point[0] +10;
+// 																					var y= point[1] - dom.offsetHeight /2 ;
+// 																					if(x + dom.offsetWidth > size.viewSize[0]){
+// 																						x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																					}
+// 																					if (x <10){
+// 																						x=10;
+// 																					}
+// 																					return [x,y];
+// 																					}																				
+																			},
+																			series:[ {
+																				name: '2026',
+																				type: 'pie',
+																				avoidLabelOverlap : false,
+																				itemStyle: {
+																					borderRadius: 5,
+																					borderColor: '#fff',
+																				},
+																				label: {
+																					show: false,
+																				},
+																				labelLine: {
+																					show: false
+																				},
+																				data : [
+				
+				
+																						{
+																						  name:'1인'
+																						, itemStyle : {color : '#41bebe'}
+																						  
+																						, value:[152270]
+																						}
+				
+			
+			
+			
+		
+			
+			
+			
+			
+				
+				,
+																						{
+																						  name:'2인'
+																						, itemStyle : {color : '#4d75c6'}
+																						  
+																						, value:[144343]
+																						}
+				
+			
+			
+			
+		
+			
+			
+			
+			
+				
+				,
+																						{
+																						  name:'3인'
+																						, itemStyle : {color : '#663399'}
+																						  
+																						, value:[94533]
+																						}
+				
+			
+			
+			
+		
+			
+			
+			
+			
+				
+				,
+																						{
+																						  name:'4인'
+																						, itemStyle : {color : '#69cccc'}
+																						  
+																						, value:[61125]
+																						}
+				
+			
+			
+			
+		
+			
+			
+			
+			
+				
+				,
+																						{
+																						  name:'5인 이상'
+																						, itemStyle : {color : '#8aa6e0'}
+																						  
+																						, value:[12385]
+																						}
+				
+																					]
+																			}]
+																		  };
+				
+			
+			
+			
+				
+				eChart5429_Option && eChart5429.setOption(eChart5429_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart5429.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3777 = echarts.init($("#chartDiv_3777")[0]);
+			
+			
+			 
+				
+		var eChart3777_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2024","2025","2026","2027","2028"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'65세 이상'
+																						, data:[16.46,17.83,19.36,20.63,22]
+																						, type: 
+																						
+																						
+																						
+																						'line'
+																						, color : '#339900'
+																						
+																						,symbolSize : 10
+																						}
+				
+			
+			
+			
+			
+		
+			
+			
+			 
+				
+				,
+																						{
+																						  name:'초고령인구 비중(80세 이상)'
+																						, data:[2.93,3.11,3.19,3.44,3.74]
+																						, type: 
+																						
+																						
+																						
+																						'line'
+																						, color : '#996633'
+																						
+																						,symbolSize : 10
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3777_Option && eChart3777.setOption(eChart3777_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3777.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3790 = echarts.init($("#chartDiv_3790")[0]);
+			
+			
+			 
+				
+		var eChart3790_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2021","2022","2023","2024","2025"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'다문화인구'
+																						, data:[21409,21709,22334,22937,23260]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#c62fb6'
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3790_Option && eChart3790.setOption(eChart3790_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3790.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3792 = echarts.init($("#chartDiv_3792")[0]);
+			
+			
+			 
+				
+		var eChart3792_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2021","2022","2023","2024","2025"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'외국인인구'
+																						, data:[25388,26352,31670,35193,36368]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#c91c28'
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3792_Option && eChart3792.setOption(eChart3792_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3792.resize();	
+					}, 200);
+				});
+			
+		
+			
+			var eChart3810 = echarts.init($("#chartDiv_3810")[0]);
+			
+			
+			 
+				
+		var eChart3810_Option = {
+																			xAxis : {
+																					  type:'category'
+																					, data:["2021","2022","2023","2024","2025"],
+																					axisTick: {
+																						show: false
+																						}
+																					},
+																			yAxis : {
+																					  type:'value',
+																					  show : false
+																					},
+																			grid : {left : '0%',right : '0%' , bottom : '10%'},
+																			tooltip:{
+																					  trigger:'axis'
+																					, axisPointer:{type:'shadow'}
+																					, confine : true
+// 																					, position : function (point, params, dom, rectr, size){
+																						
+// 																						var x= point[0] +10;
+// 																						var y= point[1] - dom.offsetHeight /2 ;
+// 																						if(x + dom.offsetWidth > size.viewSize[0]){
+// 																							x =size.viewSize[0] - dom.offsetWidth - 10;
+// 																						}
+// 																						if (x <10){
+// 																							x=10;
+// 																						}
+// 																						return [x,y];
+// 																						}
+																					},
+																			series:[
+				
+				
+																						{
+																						  name:'장애인인구'
+																						, data:[51297,51306,51210,51055,50990]
+																						, type: 
+																						
+																						'bar'
+																						
+																						
+																						
+																						, color : '#161c42'
+																						
+																						}
+				
+																					]
+																		  };
+				
+			
+			
+			
+			
+				
+				eChart3810_Option && eChart3810.setOption(eChart3810_Option);
+				$(window).on("resize", function(){
+					setTimeout(function () {
+						eChart3810.resize();	
+					}, 200);
+				});
+			
+		
+	});
+	</script>
+</head>
+
+<body class="Sub01"><!-- Sub01:인구상황판, Sub02:인구이야기, Sub03:서비스3 -->
+	<form id="paramForm">
+		<input type="hidden" id="areaId" name="areaId" value="26">
+		<input type="hidden" id="areaNm" name="areaNm" value="">
+		<input type="hidden" id="listId" name="listId" value="A_02">
+		<input type="hidden" id="statJipyoId"  name="statJipyoId"  value="3737">
+		<input type="hidden" id="vStatJipyoId" name="vStatJipyoId" value="5232">
+		<input type="hidden" id="vwCd"  value="TN_VIS_KAAP_PBN">
+	</form>
+	<div class="SkipNav"><a href="#Cont">콘텐츠 바로가기</a></div>
+	<header id="header">
+		
+
+
+		<h1>
+			<strong>KOSIS</strong>
+			<a href="/visual/populationKorea/populationIndex.do">인구로 보는 대한민국</a>
+		</h1>
+		<!-- 서비스정보보기 S -->
+		<button class="BtnServiceInfo">서비스정보 보기</button>
+		<div class="ServiceInfo">
+			<div class="TextArea">
+				<p class="Title1">KOSIS 인구로 보는 대한민국 이란?</p>
+				<p><strong>인구 구조의 변화 및 그 영향</strong>을<br> 통계로 확인해볼 수 있는<br> <strong>통계시각화콘텐츠</strong>입니다.</p>
+				<p><strong class="Title2">인구로 보는 대한민국 KOSIS</strong>은<br> 3가지 탭으로 구성되어 있습니다.</p>
+				<div class="SeriveList">
+					<span><strong>01</strong>인구상황판</span>
+					<span><strong>02</strong>인구이야기</span>
+					<span><strong>03</strong>인구더보기</span>
+				</div>
+			</div>
+			<div class="SeriveDetail">
+				<dl>
+					<dt><span>01</span> 인구상황판</dt>
+					<dd>
+						<p>지역별 인구 통계에 대한 현황 및 정보를 확인할 수 있습니다.</p>
+						<img src="/visual/ext/images/populationKorea2/common/service_info_1.jpg" alt=""/>
+						<img src="/visual/ext/images/populationKorea2/common/service_info_2.jpg" alt=""/>
+					</dd>
+				</dl>
+				<dl>
+					<dt><span>02</span> 인구이야기</dt>
+					<dd>
+						<p>관계도맵을 통해 인구와 사회·경제간 관계를 파악할 수 있습니다.</p>
+						<img src="/visual/ext/images/populationKorea2/common/service_info_3.jpg" alt=""/>
+						<img src="/visual/ext/images/populationKorea2/common/service_info_4.jpg" alt=""/>
+					</dd>
+				</dl>
+				<dl>
+					<dt><span>03</span> 인구더보기</dt>
+					<dd>
+						<p>인구 통계를 더 다양한 형태로 경험해볼 수 있습니다.</p>
+						<img src="/visual/ext/images/populationKorea2/common/service_info_5.jpg" alt=""/>
+						<img src="/visual/ext/images/populationKorea2/common/service_info_6.jpg" alt=""/>
+					</dd>
+				</dl>
+			</div>
+			<p class="InfoFooter"><strong class="Title2">인구로 보는 대한민국 KOSIS</strong>을 통해<br> <span>인구와 관련된 통계를 이용해보세요.</span></p>
+			<button class="BtnClose">닫기</button>
+		</div>
+		<!-- 서비스정보보기 E -->
+		<button class="BtnGNB">메뉴열기</button>
+		<nav class="GNB">
+			<a href="/visual/populationKorea/PopulationDashBoardMain.do">인구상황판</a>
+			<a href="/visual/populationKorea/populationStoryIndex.do">인구이야기</a>
+			<a href="/visual/populationKorea/populationMoreIndex.do">인구더보기</a>
+		</nav>
+		<button class="BtnMenuClose">메뉴닫기</button>
+	</header>
+	
+	<article id="Cont" class="Cont">
+		<h2>총인구 (추계 기준) </h2>
+		
+		<dl class="InfoTxt">
+			<dt>지표정보</dt>
+			<dd>
+				<pre>추계인구는 향후 인구변동요인(출생,사망,이동)별 가정에 따라 추계한 장래인구 규모와 연령별 구조에 대한 추정치를 의미합니다.</pre>
+			</dd>
+		</dl>
+		
+		<div class="Location"><!-- 브래드크럼 -->
+			<a href="/visual/populationKorea/PopulationDashBoardMain.do">Home</a><span>&gt;</span><a href="/visual/populationKorea/PopulationDashBoardMain.do">인구상황판</a><span>&gt;</span><strong>총인구 (추계 기준)</strong>
+		</div>
+		<div class="BtnTitleLine">
+			<div class="Btn_Share" tabindex="0"><h3>공유</h3> <button class="sns1" onclick="Btnshare(this);">카카오톡</button><button class="sns2" onclick="Btnshare(this);">페이스북</button><button class="sns3" onclick="Btnshare(this);">트위터</button><button class="sns4" onclick="Btnshare(this);">URL복사</button></div>
+			<div class="Btn_Save" tabindex="0"><h3>이미지</h3> <button onclick="chartImage('dashBoardDetail')">차트</button><button onclick="excelDownload()">통계표</button></div>
+			<div class="Btn_Print" tabindex="0"><h3>인쇄</h3> <button onclick="printChart('dashBoardDetail');">차트</button><button onclick="printTable('dashBoardDetail');">통계표</button><button onclick="printAll('dashBoardDetail');">차트+통계표</button><button onclick="pagePrint('dashBoardDetail');">페이지</button></div>
+		</div>
+		<article class="InfoBasic"><!-- 지표의 기본정보(차트, 설명글, 통계표) -->
+			<div class="PageTitle">
+				<p class="Area">
+					<label for="areaName" class="Hidden">지역</label>
+					<input id="areaName" class="areaName" type="text" value="전국" readonly>
+					<button class="BtnArea">지역변경</button>
+					<span class="AreaList">
+						<button data-code=""   class="">전국</button>
+						<button data-code="11" >서울</button>
+						<button data-code="21" >부산</button>
+						<button data-code="22" >대구</button>
+						<button data-code="23" >인천</button>
+						<button data-code="24" >광주</button>
+						<button data-code="25" >대전</button>
+						<button data-code="26" class="select">울산</button>
+						<button data-code="27" >세종</button>
+						<button data-code="31" >경기</button>
+						<button data-code="32" >강원</button>
+						<button data-code="33" >충북</button>
+						<button data-code="34" >충남</button>
+						<button data-code="35" >전북</button>
+						<button data-code="36" >전남</button>
+						<button data-code="37" >경북</button>
+						<button data-code="38" >경남</button>
+						<button data-code="39" >제주</button>
+					</span>
+				</p>
+				<span class="unit">단위  : 명</span>
+				<span class="source">통계 출처 : 국가데이터처 장래인구추계</p>
+			</div>
+			<div id="mainChart" class="Chart" style="width:100%; height: 600px;">&nbsp;</div>
+			<dl class="Toggle_label">
+				<dt>수치</dt>
+				<dd>
+					<span class="Toggle Off mainValToggle">
+						<button class="BtnToggleOn">보이기</button>
+						<button class="BtnToggleOff">안보이기</button>
+					</span>
+				</dd>
+			</dl>
+			<div class="TableArea" id="TableArea">
+				<h3>통계표<span class="unit">(단위: 명)</span></h3>
+				<p class="BtnGroup">
+					<a href="javascript:generatorNewLink('','101', 'DT_1BPB002', '', '', 'MT_ZTITLE', '', '','총인구 (추계 기준)','','','');" class="GoKosis" title="해당 통계를 국가통계포털 통계표로 조회합니다.(새창)">KOSIS 통계표보기</a>
+				</p>
+				<div class="scroll TableWrap">
+					<table class="StatisticsTable">
+					<caption>총인구 (추계 기준)</caption>
+						<thead>
+							<tr>
+								<th scope="col"></th>
+							
+								<th scope="col">1970</th>
+							
+								<th scope="col">1971</th>
+							
+								<th scope="col">1972</th>
+							
+								<th scope="col">1973</th>
+							
+								<th scope="col">1974</th>
+							
+								<th scope="col">1975</th>
+							
+								<th scope="col">1976</th>
+							
+								<th scope="col">1977</th>
+							
+								<th scope="col">1978</th>
+							
+								<th scope="col">1979</th>
+							
+								<th scope="col">1980</th>
+							
+								<th scope="col">1981</th>
+							
+								<th scope="col">1982</th>
+							
+								<th scope="col">1983</th>
+							
+								<th scope="col">1984</th>
+							
+								<th scope="col">1985</th>
+							
+								<th scope="col">1986</th>
+							
+								<th scope="col">1987</th>
+							
+								<th scope="col">1988</th>
+							
+								<th scope="col">1989</th>
+							
+								<th scope="col">1990</th>
+							
+								<th scope="col">1991</th>
+							
+								<th scope="col">1992</th>
+							
+								<th scope="col">1993</th>
+							
+								<th scope="col">1994</th>
+							
+								<th scope="col">1995</th>
+							
+								<th scope="col">1996</th>
+							
+								<th scope="col">1997</th>
+							
+								<th scope="col">1998</th>
+							
+								<th scope="col">1999</th>
+							
+								<th scope="col">2000</th>
+							
+								<th scope="col">2001</th>
+							
+								<th scope="col">2002</th>
+							
+								<th scope="col">2003</th>
+							
+								<th scope="col">2004</th>
+							
+								<th scope="col">2005</th>
+							
+								<th scope="col">2006</th>
+							
+								<th scope="col">2007</th>
+							
+								<th scope="col">2008</th>
+							
+								<th scope="col">2009</th>
+							
+								<th scope="col">2010</th>
+							
+								<th scope="col">2011</th>
+							
+								<th scope="col">2012</th>
+							
+								<th scope="col">2013</th>
+							
+								<th scope="col">2014</th>
+							
+								<th scope="col">2015</th>
+							
+								<th scope="col">2016</th>
+							
+								<th scope="col">2017</th>
+							
+								<th scope="col">2018</th>
+							
+								<th scope="col">2019</th>
+							
+								<th scope="col">2020</th>
+							
+								<th scope="col">2021</th>
+							
+								<th scope="col">2022</th>
+							
+								<th scope="col">2023</th>
+							
+								<th scope="col">2024</th>
+							
+								<th scope="col">2025</th>
+							
+								<th scope="col">2026</th>
+							
+								<th scope="col">2027</th>
+							
+								<th scope="col">2028</th>
+							
+								<th scope="col">2029</th>
+							
+								<th scope="col">2030</th>
+							
+								<th scope="col">2031</th>
+							
+								<th scope="col">2032</th>
+							
+								<th scope="col">2033</th>
+							
+								<th scope="col">2034</th>
+							
+								<th scope="col">2035</th>
+							
+								<th scope="col">2036</th>
+							
+								<th scope="col">2037</th>
+							
+								<th scope="col">2038</th>
+							
+								<th scope="col">2039</th>
+							
+								<th scope="col">2040</th>
+							
+								<th scope="col">2041</th>
+							
+								<th scope="col">2042</th>
+							
+								<th scope="col">2043</th>
+							
+								<th scope="col">2044</th>
+							
+								<th scope="col">2045</th>
+							
+								<th scope="col">2046</th>
+							
+								<th scope="col">2047</th>
+							
+								<th scope="col">2048</th>
+							
+								<th scope="col">2049</th>
+							
+								<th scope="col">2050</th>
+							
+								<th scope="col">2051</th>
+							
+								<th scope="col">2052</th>
+							
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr>
+								<th>총인구 (추계 기준)</th>
+									
+										
+								<td data-cell-header="1970">282,596</td>
+										
+									
+										
+								<td data-cell-header="1971">299,698</td>
+										
+									
+										
+								<td data-cell-header="1972">317,409</td>
+										
+									
+										
+								<td data-cell-header="1973">335,799</td>
+										
+									
+										
+								<td data-cell-header="1974">355,047</td>
+										
+									
+										
+								<td data-cell-header="1975">374,958</td>
+										
+									
+										
+								<td data-cell-header="1976">404,576</td>
+										
+									
+										
+								<td data-cell-header="1977">436,035</td>
+										
+									
+										
+								<td data-cell-header="1978">469,631</td>
+										
+									
+										
+								<td data-cell-header="1979">505,843</td>
+										
+									
+										
+								<td data-cell-header="1980">545,538</td>
+										
+									
+										
+								<td data-cell-header="1981">571,376</td>
+										
+									
+										
+								<td data-cell-header="1982">597,995</td>
+										
+									
+										
+								<td data-cell-header="1983">625,084</td>
+										
+									
+										
+								<td data-cell-header="1984">651,499</td>
+										
+									
+										
+								<td data-cell-header="1985">676,257</td>
+										
+									
+										
+								<td data-cell-header="1986">686,049</td>
+										
+									
+										
+								<td data-cell-header="1987">703,284</td>
+										
+									
+										
+								<td data-cell-header="1988">730,661</td>
+										
+									
+										
+								<td data-cell-header="1989">762,359</td>
+										
+									
+										
+								<td data-cell-header="1990">794,065</td>
+										
+									
+										
+								<td data-cell-header="1991">829,234</td>
+										
+									
+										
+								<td data-cell-header="1992">865,654</td>
+										
+									
+										
+								<td data-cell-header="1993">902,858</td>
+										
+									
+										
+								<td data-cell-header="1994">940,877</td>
+										
+									
+										
+								<td data-cell-header="1995">979,606</td>
+										
+									
+										
+								<td data-cell-header="1996">998,430</td>
+										
+									
+										
+								<td data-cell-header="1997">1,015,754</td>
+										
+									
+										
+								<td data-cell-header="1998">1,023,077</td>
+										
+									
+										
+								<td data-cell-header="1999">1,026,735</td>
+										
+									
+										
+								<td data-cell-header="2000">1,035,658</td>
+										
+									
+										
+								<td data-cell-header="2001">1,046,883</td>
+										
+									
+										
+								<td data-cell-header="2002">1,056,936</td>
+										
+									
+										
+								<td data-cell-header="2003">1,062,369</td>
+										
+									
+										
+								<td data-cell-header="2004">1,067,380</td>
+										
+									
+										
+								<td data-cell-header="2005">1,071,339</td>
+										
+									
+										
+								<td data-cell-header="2006">1,076,340</td>
+										
+									
+										
+								<td data-cell-header="2007">1,079,299</td>
+										
+									
+										
+								<td data-cell-header="2008">1,091,665</td>
+										
+									
+										
+								<td data-cell-header="2009">1,098,027</td>
+										
+									
+										
+								<td data-cell-header="2010">1,099,035</td>
+										
+									
+										
+								<td data-cell-header="2011">1,112,079</td>
+										
+									
+										
+								<td data-cell-header="2012">1,124,659</td>
+										
+									
+										
+								<td data-cell-header="2013">1,137,472</td>
+										
+									
+										
+								<td data-cell-header="2014">1,151,171</td>
+										
+									
+										
+								<td data-cell-header="2015">1,163,719</td>
+										
+									
+										
+								<td data-cell-header="2016">1,166,202</td>
+										
+									
+										
+								<td data-cell-header="2017">1,158,787</td>
+										
+									
+										
+								<td data-cell-header="2018">1,152,725</td>
+										
+									
+										
+								<td data-cell-header="2019">1,145,761</td>
+										
+									
+										
+								<td data-cell-header="2020">1,139,069</td>
+										
+									
+										
+								<td data-cell-header="2021">1,125,167</td>
+										
+									
+										
+								<td data-cell-header="2022">1,113,508</td>
+										
+									
+										
+								<td data-cell-header="2023">1,106,306</td>
+										
+									
+										
+								<td data-cell-header="2024">1,102,846</td>
+										
+									
+										
+								<td data-cell-header="2025">1,094,165</td>
+										
+									
+										
+								<td data-cell-header="2026">1,085,657</td>
+										
+									
+										
+								<td data-cell-header="2027">1,077,377</td>
+										
+									
+										
+								<td data-cell-header="2028">1,069,169</td>
+										
+									
+										
+								<td data-cell-header="2029">1,060,979</td>
+										
+									
+										
+								<td data-cell-header="2030">1,052,714</td>
+										
+									
+										
+								<td data-cell-header="2031">1,044,300</td>
+										
+									
+										
+								<td data-cell-header="2032">1,035,731</td>
+										
+									
+										
+								<td data-cell-header="2033">1,026,981</td>
+										
+									
+										
+								<td data-cell-header="2034">1,018,036</td>
+										
+									
+										
+								<td data-cell-header="2035">1,008,943</td>
+										
+									
+										
+								<td data-cell-header="2036">999,720</td>
+										
+									
+										
+								<td data-cell-header="2037">990,425</td>
+										
+									
+										
+								<td data-cell-header="2038">981,048</td>
+										
+									
+										
+								<td data-cell-header="2039">971,518</td>
+										
+									
+										
+								<td data-cell-header="2040">961,845</td>
+										
+									
+										
+								<td data-cell-header="2041">952,021</td>
+										
+									
+										
+								<td data-cell-header="2042">942,032</td>
+										
+									
+										
+								<td data-cell-header="2043">931,863</td>
+										
+									
+										
+								<td data-cell-header="2044">921,493</td>
+										
+									
+										
+								<td data-cell-header="2045">910,875</td>
+										
+									
+										
+								<td data-cell-header="2046">899,945</td>
+										
+									
+										
+								<td data-cell-header="2047">888,666</td>
+										
+									
+										
+								<td data-cell-header="2048">877,058</td>
+										
+									
+										
+								<td data-cell-header="2049">865,101</td>
+										
+									
+										
+								<td data-cell-header="2050">852,811</td>
+										
+									
+										
+								<td data-cell-header="2051">840,258</td>
+										
+									
+										
+								<td data-cell-header="2052">827,433</td>
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+							
+							<tr>
+								<th>총인구 (추계 기준, 남자)</th>
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+								<td data-cell-header="1970">144,194</td>
+										
+									
+										
+								<td data-cell-header="1971">153,335</td>
+										
+									
+										
+								<td data-cell-header="1972">162,640</td>
+										
+									
+										
+								<td data-cell-header="1973">172,194</td>
+										
+									
+										
+								<td data-cell-header="1974">182,247</td>
+										
+									
+										
+								<td data-cell-header="1975">192,340</td>
+										
+									
+										
+								<td data-cell-header="1976">208,029</td>
+										
+									
+										
+								<td data-cell-header="1977">224,801</td>
+										
+									
+										
+								<td data-cell-header="1978">242,774</td>
+										
+									
+										
+								<td data-cell-header="1979">262,180</td>
+										
+									
+										
+								<td data-cell-header="1980">283,361</td>
+										
+									
+										
+								<td data-cell-header="1981">296,602</td>
+										
+									
+										
+								<td data-cell-header="1982">310,318</td>
+										
+									
+										
+								<td data-cell-header="1983">324,335</td>
+										
+									
+										
+								<td data-cell-header="1984">337,998</td>
+										
+									
+										
+								<td data-cell-header="1985">350,826</td>
+										
+									
+										
+								<td data-cell-header="1986">355,942</td>
+										
+									
+										
+								<td data-cell-header="1987">364,868</td>
+										
+									
+										
+								<td data-cell-header="1988">379,213</td>
+										
+									
+										
+								<td data-cell-header="1989">395,855</td>
+										
+									
+										
+								<td data-cell-header="1990">412,832</td>
+										
+									
+										
+								<td data-cell-header="1991">430,990</td>
+										
+									
+										
+								<td data-cell-header="1992">449,825</td>
+										
+									
+										
+								<td data-cell-header="1993">469,098</td>
+										
+									
+										
+								<td data-cell-header="1994">488,792</td>
+										
+									
+										
+								<td data-cell-header="1995">508,820</td>
+										
+									
+										
+								<td data-cell-header="1996">518,006</td>
+										
+									
+										
+								<td data-cell-header="1997">526,644</td>
+										
+									
+										
+								<td data-cell-header="1998">529,087</td>
+										
+									
+										
+								<td data-cell-header="1999">530,018</td>
+										
+									
+										
+								<td data-cell-header="2000">534,677</td>
+										
+									
+										
+								<td data-cell-header="2001">541,403</td>
+										
+									
+										
+								<td data-cell-header="2002">546,969</td>
+										
+									
+										
+								<td data-cell-header="2003">550,588</td>
+										
+									
+										
+								<td data-cell-header="2004">553,383</td>
+										
+									
+										
+								<td data-cell-header="2005">554,975</td>
+										
+									
+										
+								<td data-cell-header="2006">558,244</td>
+										
+									
+										
+								<td data-cell-header="2007">560,664</td>
+										
+									
+										
+								<td data-cell-header="2008">568,153</td>
+										
+									
+										
+								<td data-cell-header="2009">571,366</td>
+										
+									
+										
+								<td data-cell-header="2010">571,568</td>
+										
+									
+										
+								<td data-cell-header="2011">578,008</td>
+										
+									
+										
+								<td data-cell-header="2012">584,553</td>
+										
+									
+										
+								<td data-cell-header="2013">591,049</td>
+										
+									
+										
+								<td data-cell-header="2014">598,273</td>
+										
+									
+										
+								<td data-cell-header="2015">605,412</td>
+										
+									
+										
+								<td data-cell-header="2016">605,913</td>
+										
+									
+										
+								<td data-cell-header="2017">600,998</td>
+										
+									
+										
+								<td data-cell-header="2018">597,507</td>
+										
+									
+										
+								<td data-cell-header="2019">593,106</td>
+										
+									
+										
+								<td data-cell-header="2020">587,960</td>
+										
+									
+										
+								<td data-cell-header="2021">580,679</td>
+										
+									
+										
+								<td data-cell-header="2022">574,581</td>
+										
+									
+										
+								<td data-cell-header="2023">571,612</td>
+										
+									
+										
+								<td data-cell-header="2024">570,748</td>
+										
+									
+										
+								<td data-cell-header="2025">566,336</td>
+										
+									
+										
+								<td data-cell-header="2026">562,012</td>
+										
+									
+										
+								<td data-cell-header="2027">557,812</td>
+										
+									
+										
+								<td data-cell-header="2028">553,683</td>
+										
+									
+										
+								<td data-cell-header="2029">549,551</td>
+										
+									
+										
+								<td data-cell-header="2030">545,363</td>
+										
+									
+										
+								<td data-cell-header="2031">541,094</td>
+										
+									
+										
+								<td data-cell-header="2032">536,755</td>
+										
+									
+										
+								<td data-cell-header="2033">532,320</td>
+										
+									
+										
+								<td data-cell-header="2034">527,762</td>
+										
+									
+										
+								<td data-cell-header="2035">523,113</td>
+										
+									
+										
+								<td data-cell-header="2036">518,392</td>
+										
+									
+										
+								<td data-cell-header="2037">513,596</td>
+										
+									
+										
+								<td data-cell-header="2038">508,712</td>
+										
+									
+										
+								<td data-cell-header="2039">503,721</td>
+										
+									
+										
+								<td data-cell-header="2040">498,628</td>
+										
+									
+										
+								<td data-cell-header="2041">493,461</td>
+										
+									
+										
+								<td data-cell-header="2042">488,200</td>
+										
+									
+										
+								<td data-cell-header="2043">482,850</td>
+										
+									
+										
+								<td data-cell-header="2044">477,417</td>
+										
+									
+										
+								<td data-cell-header="2045">471,896</td>
+										
+									
+										
+								<td data-cell-header="2046">466,256</td>
+										
+									
+										
+								<td data-cell-header="2047">460,490</td>
+										
+									
+										
+								<td data-cell-header="2048">454,613</td>
+										
+									
+										
+								<td data-cell-header="2049">448,605</td>
+										
+									
+										
+								<td data-cell-header="2050">442,453</td>
+										
+									
+										
+								<td data-cell-header="2051">436,197</td>
+										
+									
+										
+								<td data-cell-header="2052">429,855</td>
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+							
+							<tr>
+								<th>총인구 (추계 기준, 여자)</th>
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+								<td data-cell-header="1970">138,402</td>
+										
+									
+										
+								<td data-cell-header="1971">146,363</td>
+										
+									
+										
+								<td data-cell-header="1972">154,769</td>
+										
+									
+										
+								<td data-cell-header="1973">163,605</td>
+										
+									
+										
+								<td data-cell-header="1974">172,800</td>
+										
+									
+										
+								<td data-cell-header="1975">182,618</td>
+										
+									
+										
+								<td data-cell-header="1976">196,547</td>
+										
+									
+										
+								<td data-cell-header="1977">211,234</td>
+										
+									
+										
+								<td data-cell-header="1978">226,857</td>
+										
+									
+										
+								<td data-cell-header="1979">243,663</td>
+										
+									
+										
+								<td data-cell-header="1980">262,177</td>
+										
+									
+										
+								<td data-cell-header="1981">274,774</td>
+										
+									
+										
+								<td data-cell-header="1982">287,677</td>
+										
+									
+										
+								<td data-cell-header="1983">300,749</td>
+										
+									
+										
+								<td data-cell-header="1984">313,501</td>
+										
+									
+										
+								<td data-cell-header="1985">325,431</td>
+										
+									
+										
+								<td data-cell-header="1986">330,107</td>
+										
+									
+										
+								<td data-cell-header="1987">338,416</td>
+										
+									
+										
+								<td data-cell-header="1988">351,448</td>
+										
+									
+										
+								<td data-cell-header="1989">366,504</td>
+										
+									
+										
+								<td data-cell-header="1990">381,233</td>
+										
+									
+										
+								<td data-cell-header="1991">398,244</td>
+										
+									
+										
+								<td data-cell-header="1992">415,829</td>
+										
+									
+										
+								<td data-cell-header="1993">433,760</td>
+										
+									
+										
+								<td data-cell-header="1994">452,085</td>
+										
+									
+										
+								<td data-cell-header="1995">470,786</td>
+										
+									
+										
+								<td data-cell-header="1996">480,424</td>
+										
+									
+										
+								<td data-cell-header="1997">489,110</td>
+										
+									
+										
+								<td data-cell-header="1998">493,990</td>
+										
+									
+										
+								<td data-cell-header="1999">496,717</td>
+										
+									
+										
+								<td data-cell-header="2000">500,981</td>
+										
+									
+										
+								<td data-cell-header="2001">505,480</td>
+										
+									
+										
+								<td data-cell-header="2002">509,967</td>
+										
+									
+										
+								<td data-cell-header="2003">511,781</td>
+										
+									
+										
+								<td data-cell-header="2004">513,997</td>
+										
+									
+										
+								<td data-cell-header="2005">516,364</td>
+										
+									
+										
+								<td data-cell-header="2006">518,096</td>
+										
+									
+										
+								<td data-cell-header="2007">518,635</td>
+										
+									
+										
+								<td data-cell-header="2008">523,512</td>
+										
+									
+										
+								<td data-cell-header="2009">526,661</td>
+										
+									
+										
+								<td data-cell-header="2010">527,467</td>
+										
+									
+										
+								<td data-cell-header="2011">534,071</td>
+										
+									
+										
+								<td data-cell-header="2012">540,106</td>
+										
+									
+										
+								<td data-cell-header="2013">546,423</td>
+										
+									
+										
+								<td data-cell-header="2014">552,898</td>
+										
+									
+										
+								<td data-cell-header="2015">558,307</td>
+										
+									
+										
+								<td data-cell-header="2016">560,289</td>
+										
+									
+										
+								<td data-cell-header="2017">557,789</td>
+										
+									
+										
+								<td data-cell-header="2018">555,218</td>
+										
+									
+										
+								<td data-cell-header="2019">552,655</td>
+										
+									
+										
+								<td data-cell-header="2020">551,109</td>
+										
+									
+										
+								<td data-cell-header="2021">544,488</td>
+										
+									
+										
+								<td data-cell-header="2022">538,927</td>
+										
+									
+										
+								<td data-cell-header="2023">534,694</td>
+										
+									
+										
+								<td data-cell-header="2024">532,098</td>
+										
+									
+										
+								<td data-cell-header="2025">527,829</td>
+										
+									
+										
+								<td data-cell-header="2026">523,645</td>
+										
+									
+										
+								<td data-cell-header="2027">519,565</td>
+										
+									
+										
+								<td data-cell-header="2028">515,486</td>
+										
+									
+										
+								<td data-cell-header="2029">511,428</td>
+										
+									
+										
+								<td data-cell-header="2030">507,351</td>
+										
+									
+										
+								<td data-cell-header="2031">503,206</td>
+										
+									
+										
+								<td data-cell-header="2032">498,976</td>
+										
+									
+										
+								<td data-cell-header="2033">494,661</td>
+										
+									
+										
+								<td data-cell-header="2034">490,274</td>
+										
+									
+										
+								<td data-cell-header="2035">485,830</td>
+										
+									
+										
+								<td data-cell-header="2036">481,328</td>
+										
+									
+										
+								<td data-cell-header="2037">476,829</td>
+										
+									
+										
+								<td data-cell-header="2038">472,336</td>
+										
+									
+										
+								<td data-cell-header="2039">467,797</td>
+										
+									
+										
+								<td data-cell-header="2040">463,217</td>
+										
+									
+										
+								<td data-cell-header="2041">458,560</td>
+										
+									
+										
+								<td data-cell-header="2042">453,832</td>
+										
+									
+										
+								<td data-cell-header="2043">449,013</td>
+										
+									
+										
+								<td data-cell-header="2044">444,076</td>
+										
+									
+										
+								<td data-cell-header="2045">438,979</td>
+										
+									
+										
+								<td data-cell-header="2046">433,689</td>
+										
+									
+										
+								<td data-cell-header="2047">428,176</td>
+										
+									
+										
+								<td data-cell-header="2048">422,445</td>
+										
+									
+										
+								<td data-cell-header="2049">416,496</td>
+										
+									
+										
+								<td data-cell-header="2050">410,358</td>
+										
+									
+										
+								<td data-cell-header="2051">404,061</td>
+										
+									
+										
+								<td data-cell-header="2052">397,578</td>
+										
+									
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</article>
+
+		<article class="Inforelation"><!-- 연관지표 -->
+			<h3>연관지표</h3>
+			<div class="DashBoard" id="DashBoard">
+			
+			
+				
+				<article data-regordr="1" data-spelordr="72">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3737" data-vjipyoid="5240">총인구 (추계 기준)</a></h3>
+					<span class="unit">단위 : 명</span>
+					<span class="source">통계 출처 : 국가데이터처 장래인구추계</span>
+					<span class="tag"><button>#인구현황</button></span>
+					<div class="ChartArea" id="chartDiv_3737" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>추계인구는 향후 인구변동요인(출생,사망,이동)별 가정에 따라 추계한 장래인구 규모와 연령별 구조에 대한 추정치를 의미합니다.</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 장래인구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3737" data-vjipyoid="5240">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				
+			
+				
+				
+			
+				
+				<article data-regordr="2" data-spelordr="54">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3738" data-vjipyoid="5247">인구성장률</a></h3>
+					<span class="unit">단위 : %</span>
+					<span class="source">통계 출처 : 국가데이터처 장래인구추계</span>
+					<span class="tag"><button>#인구현황</button></span>
+					<div class="ChartArea" id="chartDiv_3738" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>인구성장률은 전년 대비 추계인구의 증감률입니다.</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 장래인구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3738" data-vjipyoid="5247">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				<article data-regordr="5" data-spelordr="36">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3741" data-vjipyoid="5241">생산연령인구 (15-64세)</a></h3>
+					<span class="unit">단위 : 명</span>
+					<span class="source">통계 출처 : 국가데이터처 장래인구추계</span>
+					<span class="tag"><button>#인구현황</button><button>#연령별</button></span>
+					<div class="ChartArea" id="chartDiv_3741" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>생산연령인구는 15~64세 사이의 인구입니다. (추계인구 기준)</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 장래인구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3741" data-vjipyoid="5241">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				<article data-regordr="6" data-spelordr="8">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3742" data-vjipyoid="5287">고령인구 (65세 이상)</a></h3>
+					<span class="unit">단위 : 명</span>
+					<span class="source">통계 출처 : 국가데이터처, 장래인구추계</span>
+					<span class="tag"><button>#인구현황</button><button>#연령별</button><button>#고령화</button></span>
+					<div class="ChartArea" id="chartDiv_3742" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>고령인구는 65세 이상 인구입니다. (추계인구 기준)</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처, 장래인구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3742" data-vjipyoid="5287">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				<article data-regordr="7" data-spelordr="49">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3743" data-vjipyoid="5264">유소년인구 (14세 이하)</a></h3>
+					<span class="unit">단위 : 명</span>
+					<span class="source">통계 출처 : 국가데이터처 장래인구추계</span>
+					<span class="tag"><button>#인구현황</button><button>#출생</button><button>#저출생</button></span>
+					<div class="ChartArea" id="chartDiv_3743" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>유소년인구는 14세 이하 인구입니다. (추계인구 기준)</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 장래인구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3743" data-vjipyoid="5264">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				<article data-regordr="9" data-spelordr="68">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3745" data-vjipyoid="5255">청소년인구 (9-24세)</a></h3>
+					<span class="unit">단위 : 천명</span>
+					<span class="source">통계 출처 : 국가데이터처 장래인구추계</span>
+					<span class="tag"><button>#인구현황</button><button>#연령별</button><button>#저출생</button></span>
+					<div class="ChartArea" id="chartDiv_3745" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>청소년인구는 9~24세 사이의 인구입니다.
+ * 청소년기본법제3조제1항</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 장래인구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3745" data-vjipyoid="5255">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				<article data-regordr="10" data-spelordr="67">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3746" data-vjipyoid="5276">청년인구 (19-34세)</a></h3>
+					<span class="unit">단위 : 천명</span>
+					<span class="source">통계 출처 : 국가데이터처 장래인구추계</span>
+					<span class="tag"><button>#인구현황</button><button>#연령별</button><button>#저출생</button></span>
+					<div class="ChartArea" id="chartDiv_3746" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>청년인구는 19~34세 사이의 인구입니다.
+* 청년기본법제3조제1항</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 장래인구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3746" data-vjipyoid="5276">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				<article data-regordr="11" data-spelordr="18">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3747" data-vjipyoid="5821">남녀 성비</a></h3>
+					<span class="unit">단위 : 여자 100명당 남자 수</span>
+					<span class="source">통계 출처 : 국가데이터처 장래인구추계</span>
+					<span class="tag"><button>#인구현황</button><button>#인구구조</button></span>
+					<div class="ChartArea" id="chartDiv_3747" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>남녀 성비는 총인구 기준 여자 100명당 남자의 인구입니다.
+수치가 클수록 남자가 많음을 의미합니다.</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 장래인구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3747" data-vjipyoid="5821">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				<article data-regordr="12" data-spelordr="65">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3748" data-vjipyoid="5572">주민등록인구</a></h3>
+					<span class="unit">단위 : 명</span>
+					<span class="source">통계 출처 : 행정안전부 주민등록인구현황</span>
+					<span class="tag"><button>#인구현황</button></span>
+					<div class="ChartArea" id="chartDiv_3748" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>주민등록인구는 주민등록법에 의거 주민등록표에 기재된 인구로 거주자, 거주불명자 및 재외국민을 의미합니다.</pre>
+							<span class="Source">* 통계 출처 : 행정안전부 주민등록인구현황</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3748" data-vjipyoid="5572">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				
+			
+				
+				
+			
+				
+				<article data-regordr="13" data-spelordr="70">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3749" data-vjipyoid="5256">총가구 (추계 기준)</a></h3>
+					<span class="unit">단위 : 가구</span>
+					<span class="source">통계 출처 : 국가데이터처 장래가구추계</span>
+					<span class="tag"><button>#가구</button><button>#가족</button><button>#인구현황</button></span>
+					<div class="ChartArea" id="chartDiv_3749" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>가구는 1인 또는 2인 이상이 모여서 취사, 취침 등 생계를 같이 하는 생활단위를 의미합니다.
+추계가구는 일반가구만을 대상으로 하며, 일반가구란 가족으로 이루어진 가구, 가족과 5인 이하의 남남이 함께 사는 가구, 1인 가구, 가족이 아닌 남남끼리 사는 5인 이하의 가구를 의미합니다.</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 장래가구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3749" data-vjipyoid="5256">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				<article data-regordr="14" data-spelordr="3">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="5429" data-vjipyoid="6711">가구원수별 가구 (2026)</a></h3>
+					<span class="unit">단위 : 가구</span>
+					<span class="source">통계 출처 : 국가데이터처 장래가구추계</span>
+					<span class="tag"><button>#가구</button><button>#가족</button><button>#인구현황</button><button>#인구구조</button></span>
+					<div class="ChartArea" id="chartDiv_5429" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>가구원수별 가구 비중은 총가구를 가구원수별로 나눈 비중을 나타냅니다.</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 장래가구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="5429" data-vjipyoid="6711">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				
+			
+				
+				
+			
+				
+				
+			
+				
+				
+			
+				
+				<article data-regordr="44" data-spelordr="9">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3777" data-vjipyoid="6064">고령인구 비중</a></h3>
+					<span class="unit">단위 : %</span>
+					<span class="source">통계 출처 : 국가데이터처 장래인구추계</span>
+					<span class="tag"><button>#인구현황</button><button>#고령화</button></span>
+					<div class="ChartArea" id="chartDiv_3777" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>고령인구 비중은 전체 인구 중 고령인구(65세 이상)의 비중을 의미합니다.
+초고령인구 비중은 전체 인구 중 초고령인구(80세 이상)의 비중을 의미합니다.</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 장래인구추계</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3777" data-vjipyoid="6064">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				
+			
+				
+				<article data-regordr="58" data-spelordr="22">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3790" data-vjipyoid="5923">다문화 인구</a></h3>
+					<span class="unit">단위 : 명</span>
+					<span class="source">통계 출처 : 국가데이터처 인구총조사</span>
+					<span class="tag"><button>#다문화</button><button>#인구현황</button></span>
+					<div class="ChartArea" id="chartDiv_3790" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>다문화 인구는 다문화 가구에 속한 구성원입니다.
+다문화 가구는 귀화의 방법으로 국적을 취득한 자 또는 외국인이 한국인(귀화자 포함) 배우자와 결혼한 결혼이민자 가구입니다.</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 인구총조사</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3790" data-vjipyoid="5923">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				<article data-regordr="59" data-spelordr="47">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3792" data-vjipyoid="5832">외국인인구</a></h3>
+					<span class="unit">단위 : 명</span>
+					<span class="source">통계 출처 : 국가데이터처 인구총조사</span>
+					<span class="tag"><button>#다문화</button><button>#인구현황</button></span>
+					<div class="ChartArea" id="chartDiv_3792" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>외국인은 국내에 거주 중인 단기체류외국인, 등록외국인, 외국국적동포거소신고자를 포함하며, 기준시점을 기준으로 대한민국에 3개월 이상 거주한 자를 의미합니다.</pre>
+							<span class="Source">* 통계 출처 : 국가데이터처 인구총조사</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3792" data-vjipyoid="5832">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+				
+				<article data-regordr="82" data-spelordr="59">
+					<h3><a href="/visual/populationKorea/PopulationDashBoardDetail.do" data-listid="A_02" data-jipyoid="3810" data-vjipyoid="5838">장애인인구</a></h3>
+					<span class="unit">단위 : 명</span>
+					<span class="source">통계 출처 : 보건복지부 장애인현황</span>
+					<span class="tag"><button>#복지</button><button>#인구현황</button></span>
+					<div class="ChartArea" id="chartDiv_3810" style="height:100%;"></div>
+					<dl class="Toggle_label">
+						<dt>수치</dt>
+						<dd>
+							<span class="Toggle Off valToggle">
+								<button class="BtnToggleOn">보이기</button>
+								<button class="BtnToggleOff">안보이기</button>
+							</span>
+						</dd>
+					</dl>
+					<div class="BtnGroup">
+						<button class="BtnInfo">간략정보보기</button>
+						<div class="InfoBox">
+							<pre>등록장애인은 신체적, 정신적 장애로 특별자치시장, 특별자치도지사, 시장, 군수, 구청장애 장애인등록을 한 자를 의미합니다.</pre>
+							<span class="Source">* 통계 출처 : 보건복지부 장애인현황</span>
+							<button class="BtnClose">간략정보닫기</button>
+						</div>
+						<button class="BtnChart none">차트로 돌아가기</button>
+						<a href="/visual/populationKorea/PopulationDashBoardDetail.do" class="BtnGo" data-listid="A_02" data-jipyoid="3810" data-vjipyoid="5838">자세히보기</a>
+					</div>
+				</article>
+				
+				
+			
+			</div>
+		</article>
+		<div class="BtnGroup">
+			<button class="BtnList">목록으로돌아가기</button>
+		</div>
+		<div class="SlideMenu" style="top: 925px;"><!-- 따라다니는 퀵메뉴 -->
+			<div class="GoGroup">
+				<a href="#mainChart">차트</a>
+				<a href="#TableArea">통계표</a>
+				<a href="#DashBoard">연관지표</a>
+				<a href="#Cont">목록</a>
+			</div>
+			<a class="BtnTop" href="#top">위로</a>
+		</div>
+	</article>
+	<!-- 인구상황판 상세 E -->
+	
+
+
+
+	<footer>국가데이터처</footer>
+	
+	<input type="hidden" id="chartHtml" value="">
+
+</body>
+</html>
