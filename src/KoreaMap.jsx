@@ -119,7 +119,7 @@ export default function KoreaMap({ selected, onSelect, year, forecast, policyMod
         const region = regionsByCode[item.code];
         const count = getPopulation(region, year);
         const description = policyMode ? `${region?.sourceNames[year] || districtName(item)} 지원정책 보기` : `${region?.sourceNames[forecast ? baseYear : year] || provinceName(item.code) + ' ' + districtName(item)} · ${year}년 12월 ${forecast && year > baseYear ? '참고용 예상 ' : ''}${count === null ? '자료 없음' : count.toLocaleString('ko-KR') + '명'} · ${labelChange(change)}`;
-        return <path key={item.code} d={item.d} fill={policyMode ? item.code === districtCode ? '#bfdbfe' : '#f8fafc' : populationColor(change)} fillRule="evenodd"
+        return <path key={item.code} d={item.d} fill={policyMode ? item.code === districtCode ? '#d4d4d4' : '#fafafa' : populationColor(change)} fillRule="evenodd"
           className={'province district' + (item.code === districtCode ? ' is-selected' : '')}
           role="button" tabIndex={0} aria-label={description}
           aria-pressed={item.code === districtCode} onClick={() => choose(item)}

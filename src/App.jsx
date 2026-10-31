@@ -7,6 +7,7 @@ import LongTermView from './LongTermView';
 import ForecastView from './ForecastView';
 import { regions, pop, years, baselineYear, latestYear, populationMetadata } from './data/data';
 import PolicyLink from './PolicyLink';
+import ThemeToggle from './ThemeToggle';
 import { populationChange, changeLabel } from './data/population-color';
 import { longTermByCode } from './data/long-term';
 
@@ -37,7 +38,7 @@ export default function App() {
     setMode('policies');
   };
   return <div className="app">
-    <header><div><b>대한민국 인구변화</b><span>& 지역정착 정보 플랫폼</span></div></header>
+    <header><div><b>대한민국 인구변화</b><span>& 지역정착 정보 플랫폼</span></div><ThemeToggle /></header>
     <nav className="population-modes" aria-label="인구 통계 모드">
       <button type="button" aria-pressed={mode === 'long-term'} onClick={() => setMode('long-term')}><strong>장기 변화</strong><span>시·도 · 1970~2025 · 추계인구</span></button>
       <button type="button" aria-pressed={mode === 'district'} onClick={() => setMode('district')}><strong>시·군·구 상세</strong><span>2014~2025 · 주민등록인구</span></button>
@@ -101,8 +102,8 @@ export function DistrictView({ initialSelected = null, onRegionChange, onOpenPol
                     <XAxis dataKey="year" type="number" domain={[baselineYear, latestYear]} allowDecimals={false} />
                     <YAxis width={50} tickFormatter={value => `${(value / 10000).toFixed(0)}만`} />
                     <Tooltip labelFormatter={value => `${value}년 12월`} formatter={value => [fmt(value), '주민등록인구']} />
-                    <ReferenceLine x={year} stroke="#667085" strokeDasharray="3 3" />
-                    <Line type="linear" dataKey="population" name="주민등록인구" stroke="#155eef" strokeWidth={2} dot={{ r: 3 }} connectNulls={false} />
+                    <ReferenceLine x={year} stroke="#666666" strokeDasharray="3 3" />
+                    <Line type="linear" dataKey="population" name="주민등록인구" stroke="var(--chart-ink, #111111)" strokeWidth={2} dot={{ r: 3 }} connectNulls={false} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>

@@ -2,3 +2,4 @@ import React from 'react';import{createRoot}from'react-dom/client';import App fr
 
 import './map.css';
 import './mobile.css';
+import './theme.css';

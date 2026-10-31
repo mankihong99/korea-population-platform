@@ -3,8 +3,8 @@
 .grid>*{min-width:0}
 @media(pointer:coarse){
   .map-touch-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0;font-size:12px;line-height:1.6}
-  .map-touch-controls button{min-height:44px;padding:10px 14px;border:1px solid #155eef;border-radius:8px;background:white;color:#155eef}
-  .map-touch-controls button[aria-pressed=true]{background:#155eef;color:white}
+  .map-touch-controls button{min-height:44px;padding:10px 14px;border:1px solid #111111;border-radius:8px;background:white;color:#111111}
+  .map-touch-controls button[aria-pressed=true]{background:#111111;color:white}
   .korea-map.can-pan{touch-action:pan-y;cursor:default}
   .korea-map.can-pan.touch-pan-enabled{touch-action:none}
 }
@@ -38,7 +38,7 @@
   select,input[type=search]{font-size:16px!important;min-height:44px;max-width:100%}
   .forecast-period{align-items:stretch}.forecast-period select{width:100%}
   .map-zoom button{min-width:44px;min-height:44px}
-  .mobile-map-toggle{display:block;width:100%;min-height:44px;border:1px solid #155eef;color:#155eef;background:#eff6ff;border-radius:8px;margin:12px 0}
+  .mobile-map-toggle{display:block;width:100%;min-height:44px;border:1px solid #111111;color:#111111;background:#f3f3f3;border-radius:8px;margin:12px 0}
   .mobile-map-collapsed .korea-map,.mobile-map-collapsed .map-touch-controls,.mobile-map-collapsed .map-note,.mobile-map-collapsed .map-source,.mobile-map-collapsed .district-summary,.mobile-map-collapsed .map-zoom{display:none}
   .policy-view{padding:20px 12px;min-width:0}
   .policy-view .policy-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}

@@ -1,73 +1,77 @@
 .map{position:relative;background:#fff;padding:0 14px 12px}
+:root{accent-color:#111111}
+a{color:#111111}
+a:visited{color:#404040}
+button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #111111;outline-offset:3px}
 .population-modes{display:flex;flex-wrap:wrap;gap:12px;max-width:1240px;margin:24px auto 0;padding:0 20px}
-.forecast-period{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:16px 0;color:#344054}
-.forecast-period select{padding:10px;border:1px solid #d0d5dd;border-radius:8px;background:white;color:#344054}
+.forecast-period{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:16px 0;color:#404040}
+.forecast-period select{padding:10px;border:1px solid #d0d5dd;border-radius:8px;background:white;color:#404040}
 @media(max-width:600px){.population-modes button{min-width:100%}}
-.population-modes button{flex:1;text-align:left;padding:16px 18px;border:1px solid #d0d5dd;border-radius:12px;background:#fff;color:#344054;cursor:pointer}
+.population-modes button{flex:1;text-align:left;padding:16px 18px;border:1px solid #d0d5dd;border-radius:12px;background:#fff;color:#404040;cursor:pointer}
 .population-modes button strong,.population-modes button span{display:block}
 .population-modes button strong{font-size:16px;margin-bottom:6px}
 .population-modes button span{font-size:12px;line-height:1.5}
-.population-modes button[aria-pressed=true]{background:#eff6ff;border:2px solid #155eef;color:#174ea6;padding:15px 17px}
-.population-modes button:focus-visible{outline:2px solid #155eef;outline-offset:3px}
-.mode-explanation{margin-bottom:18px;color:#344054}
-.mode-explanation p{margin:7px 0 0;color:#667085;font-size:13px;line-height:1.7}
+.population-modes button[aria-pressed=true]{background:#f3f3f3;border:2px solid #111111;color:#111111;padding:15px 17px}
+.population-modes button:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.mode-explanation{margin-bottom:18px;color:#404040}
+.mode-explanation p{margin:7px 0 0;color:#666666;font-size:13px;line-height:1.7}
 .projection-notice{background:#fffaeb;border:1px solid #fedf89;border-radius:9px;padding:12px;margin:12px 18px;color:#92400e;font-size:12px;line-height:1.6}
 aside .projection-notice{margin:12px 0}
-.population-source{line-height:1.8;color:#667085}
-.population-source a{color:#155eef;text-underline-offset:3px}
-.population-caution,.empty-region p{color:#667085;font-size:12px;line-height:1.7}
+.population-source{line-height:1.8;color:#666666}
+.population-source a{color:#111111;text-underline-offset:3px}
+.population-caution,.empty-region p{color:#666666;font-size:12px;line-height:1.7}
 .empty-region{padding:30px 0;text-align:center}
 .empty-region h2{font-size:19px}
 .population-badge.growth{background:#ecfdf3;color:#15803d}
 .population-badge.decline{background:#fef3f2;color:#b91c1c}
-.population-badge.neutral{background:#f2f4f7;color:#475467}
-.year-controls{margin:8px 18px 16px;padding:14px;background:#f7f9fc;border:1px solid #e4e7ec;border-radius:12px}
+.population-badge.neutral{background:#f2f4f7;color:#525252}
+.year-controls{margin:8px 18px 16px;padding:14px;background:#f7f7f7;border:1px solid #e4e7ec;border-radius:12px}
 .year-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .year-heading label{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700}
-.year-heading select{padding:8px 12px;border:1px solid #d0d5dd;border-radius:8px;background:#fff;font:inherit;color:#182230}
-.year-heading span,.year-controls p{font-size:11px;color:#667085}
+.year-heading select{padding:8px 12px;border:1px solid #d0d5dd;border-radius:8px;background:#fff;font:inherit;color:#222222}
+.year-heading span,.year-controls p{font-size:11px;color:#666666}
 .year-shortcuts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.year-shortcuts button{padding:8px 10px;border:1px solid #d0d5dd;border-radius:7px;background:#fff;color:#344054;cursor:pointer}
-.year-shortcuts button[aria-pressed=true]{background:#155eef;color:#fff;border-color:#155eef}
+.year-shortcuts button{padding:8px 10px;border:1px solid #d0d5dd;border-radius:7px;background:#fff;color:#404040;cursor:pointer}
+.year-shortcuts button[aria-pressed=true]{background:#111111;color:#fff;border-color:#111111}
 .year-controls .timeline{padding:12px 0 4px;gap:10px}
 .year-controls .timeline input{min-width:0}
 .year-controls .timeline button{flex-shrink:0}
 .year-controls p{margin:8px 0 0;line-height:1.5}
-.year-controls :focus-visible{outline:2px solid #155eef;outline-offset:2px}
+.year-controls :focus-visible{outline:2px solid #111111;outline-offset:2px}
 .korea-map{display:block;width:100%;height:600px;max-height:72vh;margin:auto;overflow:hidden}
 .korea-map.can-pan{touch-action:none;user-select:none;cursor:grab}
 .korea-map.can-pan .district{cursor:grab}
 .korea-map.is-dragging,.korea-map.is-dragging .district{cursor:grabbing}
 .province{stroke:#858b86;stroke-width:.65;stroke-linejoin:round;vector-effect:non-scaling-stroke;cursor:pointer;transition:filter .15s,stroke .15s}
-.province:hover{filter:brightness(1.06);stroke:#475467;stroke-width:1.4}
-.province.is-selected{stroke:#29394c;stroke-width:2.2}
-.province:focus-visible{outline:none;stroke:#155eef;stroke-width:3;filter:brightness(1.08)}
+.province:hover{filter:brightness(1.06);stroke:#525252;stroke-width:1.4}
+.province.is-selected{stroke:#222222;stroke-width:2.2}
+.province:focus-visible{outline:none;stroke:#111111;stroke-width:3;filter:brightness(1.08)}
 .province.no-data{cursor:help}
 .map-labels{pointer-events:none}
 .map-label.selectable{pointer-events:auto;cursor:pointer}
 .map-label text{text-anchor:middle;dominant-baseline:middle;font-size:11px;font-weight:700;fill:#263d43;paint-order:stroke;stroke:#ffffff70;stroke-width:2px;stroke-linejoin:round}
 .map-label text.city-label{font-size:7.5px;stroke:#ffffffb0;stroke-width:2px}
-.label-leader{fill:none;stroke:#667085;stroke-width:.6;pointer-events:none}
-.map-note,.map-source{text-align:center;margin:4px 0;color:#667085;font-size:11px;line-height:1.6}
+.label-leader{fill:none;stroke:#666666;stroke-width:.6;pointer-events:none}
+.map-note,.map-source{text-align:center;margin:4px 0;color:#666666;font-size:11px;line-height:1.6}
 .map-source{font-size:10px;color:#8b929e}
 .map-source a{color:inherit;text-underline-offset:2px}
 .district{stroke:#6e7d81;stroke-width:.55}
-.population-legend{margin:0 4px 16px;padding:14px;border:1px solid #e4e7ec;border-radius:10px;font-size:12px;color:#344054}
+.population-legend{margin:0 4px 16px;padding:14px;border:1px solid #e4e7ec;border-radius:10px;font-size:12px;color:#404040}
 .population-scale{height:12px;margin-top:12px;border:1px solid #d0d5dd;border-radius:4px}
 .population-ticks{display:grid;grid-template-columns:1fr 1fr 1fr;margin-top:6px;font-size:11px}
 .population-ticks span:nth-child(2){text-align:center}
 .population-ticks span:last-child{text-align:right}
-.population-legend p{margin:8px 0 0;color:#667085;font-size:11px;line-height:1.5}
+.population-legend p{margin:8px 0 0;color:#666666;font-size:11px;line-height:1.5}
 .province-outline{fill:none;stroke:#45565b;stroke-width:1.1;vector-effect:non-scaling-stroke;pointer-events:none}
 .map-controls{display:flex;flex-wrap:wrap;align-items:end;gap:10px;padding:12px 4px;border-bottom:1px solid #edf0f3}
-.map-controls label{display:flex;flex:1;min-width:120px;flex-direction:column;gap:5px;color:#667085;font-size:12px}
-.map-controls select{width:100%;min-height:38px;padding:7px;border:1px solid #d0d5dd;border-radius:8px;background:#fff;color:#182230;font:inherit}
+.map-controls label{display:flex;flex:1;min-width:120px;flex-direction:column;gap:5px;color:#666666;font-size:12px}
+.map-controls select{width:100%;min-height:38px;padding:7px;border:1px solid #d0d5dd;border-radius:8px;background:#fff;color:#222222;font:inherit}
 .map-zoom{display:flex;gap:5px}
-.map-zoom button{min-width:38px;min-height:38px;padding:7px;border:1px solid #d0d5dd;border-radius:8px;background:#fff;cursor:pointer;color:#344054}
+.map-zoom button{min-width:38px;min-height:38px;padding:7px;border:1px solid #d0d5dd;border-radius:8px;background:#fff;cursor:pointer;color:#404040}
 .map-zoom button:disabled{opacity:.4;cursor:default}
-.map-controls :focus-visible{outline:2px solid #155eef;outline-offset:2px}
-.district-summary{display:flex;flex-direction:column;gap:5px;background:#f7f9fc;border-radius:10px;padding:14px;margin:0 4px 12px;font-size:13px}
-.district-summary span,.district-summary small{color:#667085;line-height:1.5}
+.map-controls :focus-visible{outline:2px solid #111111;outline-offset:2px}
+.district-summary{display:flex;flex-direction:column;gap:5px;background:#f7f7f7;border-radius:10px;padding:14px;margin:0 4px 12px;font-size:13px}
+.district-summary span,.district-summary small{color:#666666;line-height:1.5}
 .maptitle{gap:12px;align-items:baseline}
-.maptitle .legend{color:#667085;padding-top:4px}
+.maptitle .legend{color:#666666;padding-top:4px}
 @media(max-width:600px){.map{padding:0 0 10px}.korea-map{height:auto;max-height:none}.maptitle{padding:20px 16px 8px;display:block}.maptitle h2{font-size:20px}.maptitle p{font-size:13px}.maptitle .legend{font-size:11px}.map-note,.map-source{padding:0 12px}header b{font-size:16px}header span{font-size:11px}}

@@ -64,7 +64,7 @@ export default function LongTermView({ initialCode = '', onRegionChange, onOpenP
             <svg className="korea-map" viewBox="0 0 600 600" aria-labelledby="long-map-title long-map-description">
               <title id="long-map-title">시·도별 장기 추계인구 지도</title>
               <desc id="long-map-description">{year}년 추계인구의 1970년 대비 증감률입니다. 기준 자료가 없는 지역은 사선으로 표시합니다. 지도 모양은 2018년 경계입니다.</desc>
-              <defs><pattern id="long-missing" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#f8fafc" /><path d="M0,6L6,0" stroke="#b8c1cc" strokeWidth="1" /></pattern></defs>
+              <defs><pattern id="long-missing" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#fafafa" /><path d="M0,6L6,0" stroke="#b8c1cc" strokeWidth="1" /></pattern></defs>
               {orderedPaths.map(path => {
                 const region = longTermByCode[path.code];
                 const value = change(region, year);
@@ -112,11 +112,11 @@ export default function LongTermView({ initialCode = '', onRegionChange, onOpenP
               <XAxis dataKey="year" type="number" domain={[1970, latestYear]} ticks={[1970, 1990, 2010, latestYear]} />
               <YAxis width={55} tickFormatter={value => `${Math.round(value / 10000)}만`} />
               <Tooltip labelFormatter={value => `${value}년 · ${periodLabel(Number(value))}`} formatter={value => [fmt(value), '추계인구']} />
-              <ReferenceLine x={year} stroke="#667085" strokeDasharray="3 3" />
-              <Line type="linear" dataKey="past" name="과거 추계" stroke="#155eef" strokeWidth={2} dot={false} connectNulls={false} />
+              <ReferenceLine x={year} stroke="#666666" strokeDasharray="3 3" />
+              <Line type="linear" dataKey="past" name="과거 추계" stroke="var(--chart-ink, #111111)" strokeWidth={2} dot={false} connectNulls={false} />
               <Line type="linear" dataKey="projection" name="전망" stroke="#b45309" strokeDasharray="5 4" strokeWidth={2} dot={false} connectNulls={false} />
             </LineChart></ResponsiveContainer>
-            <p className="population-caution">파란 실선: 과거 추계 · 주황 점선: 2022년 이후 전망 연결 구간</p>
+            <p className="population-caution">실선: 과거 추계 · 주황 점선: 2022년 이후 전망 연결 구간</p>
           </div>
           <div className={'badge population-badge ' + (selectedChange === null || selectedChange === 0 ? 'neutral' : selectedChange > 0 ? 'growth' : 'decline')}>{changeLabel(selected, year)}</div>
           <p className="population-caution">자료가 없는 연도는 0명으로 간주하거나 다른 지역의 인구로 채우지 않습니다.</p>

@@ -58,11 +58,11 @@ export default function ForecastView({ initialSelected = null, onRegionChange, o
               <XAxis dataKey="year" type="number" domain={[base - period, 2050]} ticks={[base - period, base, 2030, 2040, 2050]} />
               <YAxis width={55} tickFormatter={value => `${Math.round(value / 10000)}만`} />
               <Tooltip labelFormatter={value => `${value}년 · ${value > base ? '참고용 예상' : '실제'}`} formatter={(value, name) => [fmt(value), name]} />
-              <ReferenceLine x={base} stroke="#64748b" label="예상 시작" />
-              <Line dataKey="actual" name="실제 주민등록인구" stroke="#155eef" dot={false} connectNulls={false} />
+              <ReferenceLine x={base} stroke="#737373" label="예상 시작" />
+              <Line dataKey="actual" name="실제 주민등록인구" stroke="var(--chart-ink, #111111)" dot={false} connectNulls={false} />
               <Line dataKey="forecast" name="단순 추세 예상" stroke="#b45309" strokeDasharray="5 4" dot={false} connectNulls={false} />
             </LineChart></ResponsiveContainer>
-            <p>파란 실선: 실제 · 주황 점선: 참고용 예상</p>
+            <p>실선: 실제 · 주황 점선: 참고용 예상</p>
           </div>
           <p className="population-caution">{forecastLabel(change(selected, year))} · {base}년 기준 인구 {fmt(pop(selected, base))}</p>
         </> : <div className="empty-region"><h2>시·군·구를 선택하세요</h2><p>지역별 평균 변화율과 실제·예상 인구 그래프를 확인할 수 있습니다.</p></div>}

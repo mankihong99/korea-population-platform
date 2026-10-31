@@ -13,6 +13,14 @@ try {
     await page.goto('http://127.0.0.1:5183');
     const checkWidth = async () => assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth), `horizontal overflow at ${width}`);
     await checkWidth();
+    const theme = page.getByRole('button', {name:'다크모드',exact:true});
+    await theme.click();
+    await page.waitForFunction(()=>document.documentElement.dataset.theme==='dark');
+    await page.reload();
+    await page.waitForFunction(()=>document.documentElement.dataset.theme==='dark');
+    assert.equal(await theme.getAttribute('aria-pressed'),'true');
+    assert.equal(await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(18, 18, 18)');
+    await checkWidth();
     await page.getByRole('button',{name:'지역정착 지원정책',exact:false}).click();
     const toggle = page.getByRole('button',{name:'지도에서 선택하기',exact:true});
     await toggle.waitFor();
@@ -33,6 +41,8 @@ try {
     await checkWidth();
     await page.getByRole('button',{name:'시·군·구 상세',exact:false}).click();
     await checkWidth();
+    await theme.click();
+    await page.waitForFunction(()=>document.documentElement.dataset.theme==='light');
     await context.close();
     console.log(`PASS mobile ${width}px: navigation, policy region, map toggle, touch mode, no overflow`);
   }
