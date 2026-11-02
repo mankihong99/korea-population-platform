@@ -7,6 +7,32 @@ let browser;
 try {
   await server.listen();
   browser = await chromium.launch({channel:'msedge',headless:true});
+  for(const width of [1024,1440,1920]){
+    const context=await browser.newContext({viewport:{width,height:1000}});
+    const page=await context.newPage();
+    await page.goto('http://127.0.0.1:5183');
+    await page.getByRole('button',{name:'2072 인구 전망',exact:false}).click();
+    const forecast=await page.locator('.hero').boundingBox();
+    const header=await page.locator('header').boundingBox();
+    await page.getByRole('button',{name:'지역정착 지원정책',exact:false}).click();
+    await page.locator('.policy-layout').waitFor();
+    const policy=await page.locator('.policy-view').boundingBox();
+    assert.equal(policy.x,forecast.x,`aligned left edge at ${width}`);
+    assert.equal(policy.width,forecast.width,`same content width at ${width}`);
+    assert.equal(policy.y,forecast.y,`same content start at ${width}`);
+    assert.deepEqual(await page.locator('header').boundingBox(),header);
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    for(const selector of ['.policy-map','.policy-panel']){
+      const box=await page.locator(selector).boundingBox();
+      assert.ok(box.x>=policy.x&&box.x+box.width<=policy.x+policy.width);
+    }
+    await page.getByRole('button',{name:'전체 지역 정책 검색 →',exact:true}).click();
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    await page.getByRole('button',{name:'2072 인구 전망',exact:false}).click();
+    assert.deepEqual(await page.locator('.hero').boundingBox(),forecast);
+    await context.close();
+    console.log(`PASS desktop ${width}px: forecast/policy alignment, global search, no overflow`);
+  }
   for (const width of [360,390,600]) {
     const context = await browser.newContext({viewport:{width,height:844},isMobile:true,hasTouch:true});
     const page = await context.newPage();

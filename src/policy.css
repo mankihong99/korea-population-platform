@@ -18,9 +18,14 @@
 .region-policy-preview li { margin: 8px 0; line-height: 1.6; }
 .region-policy-preview a { display: inline-block; padding: 10px 0; color: #111111; font-weight: 700; }
 .region-policy-preview small { display: block; color: #525252; line-height: 1.6; }
-.policy-layout { display: grid; grid-template-columns: minmax(320px, 1fr) minmax(360px, 1.2fr); gap: 24px; align-items: start; }
+.policy-layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 18px; align-items: start; }
+.policy-layout > * { min-width: 0; }
+.policy-view .mode-explanation h2 { margin-top: 0; }
+.policy-view .policy-panel { width: 100%; overflow-wrap: anywhere; }
+.policy-view .policy-sources { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.policy-view .policy-sources > div { min-width: 0; }
 .policy-layout .policy-panel { margin-top: 0; min-width: 0; }
-.policy-map { position: sticky; top: 16px; }
+.policy-map { position: sticky; top: 86px; }
 .policy-map h3 { padding: 0 18px; }
 .region-policy-preview button { border: 1px solid #111111; border-radius: 8px; background: #111111; color: white; padding: 12px 16px; cursor: pointer; }
 @media(max-width:900px) { .policy-layout { grid-template-columns: minmax(0,1fr); } .policy-map { position: static; } }
