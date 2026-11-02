@@ -1,0 +1,2 @@
+# Preserve downloaded source bytes so provenance checksums survive checkout.
+data-source/projection/** -text

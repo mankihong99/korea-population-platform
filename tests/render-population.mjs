@@ -13,7 +13,7 @@ try {
   const home = renderToStaticMarkup(React.createElement(App));
   assert.ok(home.includes('장기 변화'));
   assert.ok(home.includes('시·군·구 상세'));
-  assert.ok(home.includes('2050 인구 전망'));
+  assert.ok(home.includes('2072 인구 전망'));
   assert.ok(home.includes('지역별 혜택 · 지원대상 · 신청 안내'));
   assert.ok(!home.includes('id="region-policies"'));
   const { default: PolicyView } = await vite.ssrLoadModule('/src/PolicyView.jsx');
@@ -37,9 +37,12 @@ try {
   assert.ok(preview.includes('href="#region-policies"'));
   const { default: ForecastView } = await vite.ssrLoadModule('/src/ForecastView.jsx');
   const outlook = renderToStaticMarkup(React.createElement(ForecastView));
-  assert.ok(outlook.includes('2050년 (전망)'));
-  assert.ok(outlook.includes('공식 장래인구추계가 아닙니다'));
-  assert.equal((outlook.match(/role="button"/g) || []).length, 250);
+  assert.ok(outlook.includes('2072년 (전망)'));
+  assert.ok(outlook.includes('공식 시·도 장래인구추계'));
+  assert.ok(outlook.includes('36,222,293명'));
+  assert.ok(outlook.includes('17,270,735명'));
+  assert.ok(outlook.includes('2025년 값도 전망값'));
+  assert.equal((outlook.match(/role="button"/g) || []).length, 17);
   assert.ok(outlook.includes('2025년 대비'));
   assert.ok(home.includes('32,240,827명'));
   assert.equal((home.match(/role="button"/g) || []).length, 17);

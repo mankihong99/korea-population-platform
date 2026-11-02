@@ -1,0 +1,380 @@
+[
+  {
+    "code": "00",
+    "kind": "young",
+    "file": "00-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=",
+    "retrievedAt": "2026-11-02T04:34:36.686Z"
+  },
+  {
+    "code": "11",
+    "kind": "total",
+    "file": "11-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=11",
+    "retrievedAt": "2026-11-02T04:34:37.133Z"
+  },
+  {
+    "code": "00",
+    "kind": "older",
+    "file": "00-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=",
+    "retrievedAt": "2026-11-02T04:34:37.305Z"
+  },
+  {
+    "code": "00",
+    "kind": "total",
+    "file": "00-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=",
+    "retrievedAt": "2026-11-02T04:34:37.362Z"
+  },
+  {
+    "code": "11",
+    "kind": "older",
+    "file": "11-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=11",
+    "retrievedAt": "2026-11-02T04:34:37.465Z"
+  },
+  {
+    "code": "11",
+    "kind": "young",
+    "file": "11-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=11",
+    "retrievedAt": "2026-11-02T04:34:37.665Z"
+  },
+  {
+    "code": "21",
+    "kind": "older",
+    "file": "21-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=21",
+    "retrievedAt": "2026-11-02T04:34:37.839Z"
+  },
+  {
+    "code": "21",
+    "kind": "total",
+    "file": "21-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=21",
+    "retrievedAt": "2026-11-02T04:34:37.980Z"
+  },
+  {
+    "code": "21",
+    "kind": "young",
+    "file": "21-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=21",
+    "retrievedAt": "2026-11-02T04:34:38.008Z"
+  },
+  {
+    "code": "22",
+    "kind": "total",
+    "file": "22-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=22",
+    "retrievedAt": "2026-11-02T04:34:38.288Z"
+  },
+  {
+    "code": "22",
+    "kind": "older",
+    "file": "22-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=22",
+    "retrievedAt": "2026-11-02T04:34:38.329Z"
+  },
+  {
+    "code": "22",
+    "kind": "young",
+    "file": "22-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=22",
+    "retrievedAt": "2026-11-02T04:34:38.343Z"
+  },
+  {
+    "code": "23",
+    "kind": "older",
+    "file": "23-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=23",
+    "retrievedAt": "2026-11-02T04:34:38.668Z"
+  },
+  {
+    "code": "23",
+    "kind": "total",
+    "file": "23-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=23",
+    "retrievedAt": "2026-11-02T04:34:38.706Z"
+  },
+  {
+    "code": "23",
+    "kind": "young",
+    "file": "23-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=23",
+    "retrievedAt": "2026-11-02T04:34:38.826Z"
+  },
+  {
+    "code": "24",
+    "kind": "older",
+    "file": "24-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=24",
+    "retrievedAt": "2026-11-02T04:34:39.062Z"
+  },
+  {
+    "code": "24",
+    "kind": "total",
+    "file": "24-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=24",
+    "retrievedAt": "2026-11-02T04:34:39.084Z"
+  },
+  {
+    "code": "24",
+    "kind": "young",
+    "file": "24-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=24",
+    "retrievedAt": "2026-11-02T04:34:39.157Z"
+  },
+  {
+    "code": "25",
+    "kind": "total",
+    "file": "25-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=25",
+    "retrievedAt": "2026-11-02T04:34:39.487Z"
+  },
+  {
+    "code": "25",
+    "kind": "young",
+    "file": "25-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=25",
+    "retrievedAt": "2026-11-02T04:34:39.509Z"
+  },
+  {
+    "code": "25",
+    "kind": "older",
+    "file": "25-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=25",
+    "retrievedAt": "2026-11-02T04:34:39.552Z"
+  },
+  {
+    "code": "26",
+    "kind": "older",
+    "file": "26-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=26",
+    "retrievedAt": "2026-11-02T04:34:39.845Z"
+  },
+  {
+    "code": "26",
+    "kind": "young",
+    "file": "26-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=26",
+    "retrievedAt": "2026-11-02T04:34:39.894Z"
+  },
+  {
+    "code": "26",
+    "kind": "total",
+    "file": "26-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=26",
+    "retrievedAt": "2026-11-02T04:34:39.960Z"
+  },
+  {
+    "code": "29",
+    "kind": "older",
+    "file": "29-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=27",
+    "retrievedAt": "2026-11-02T04:34:40.212Z"
+  },
+  {
+    "code": "29",
+    "kind": "total",
+    "file": "29-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=27",
+    "retrievedAt": "2026-11-02T04:34:40.272Z"
+  },
+  {
+    "code": "29",
+    "kind": "young",
+    "file": "29-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=27",
+    "retrievedAt": "2026-11-02T04:34:40.277Z"
+  },
+  {
+    "code": "31",
+    "kind": "older",
+    "file": "31-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=31",
+    "retrievedAt": "2026-11-02T04:34:40.610Z"
+  },
+  {
+    "code": "31",
+    "kind": "young",
+    "file": "31-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=31",
+    "retrievedAt": "2026-11-02T04:34:40.626Z"
+  },
+  {
+    "code": "31",
+    "kind": "total",
+    "file": "31-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=31",
+    "retrievedAt": "2026-11-02T04:34:40.647Z"
+  },
+  {
+    "code": "32",
+    "kind": "older",
+    "file": "32-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=32",
+    "retrievedAt": "2026-11-02T04:34:40.963Z"
+  },
+  {
+    "code": "32",
+    "kind": "young",
+    "file": "32-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=32",
+    "retrievedAt": "2026-11-02T04:34:40.978Z"
+  },
+  {
+    "code": "32",
+    "kind": "total",
+    "file": "32-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=32",
+    "retrievedAt": "2026-11-02T04:34:41.054Z"
+  },
+  {
+    "code": "33",
+    "kind": "older",
+    "file": "33-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=33",
+    "retrievedAt": "2026-11-02T04:34:41.319Z"
+  },
+  {
+    "code": "33",
+    "kind": "total",
+    "file": "33-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=33",
+    "retrievedAt": "2026-11-02T04:34:41.406Z"
+  },
+  {
+    "code": "33",
+    "kind": "young",
+    "file": "33-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=33",
+    "retrievedAt": "2026-11-02T04:34:41.434Z"
+  },
+  {
+    "code": "34",
+    "kind": "total",
+    "file": "34-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=34",
+    "retrievedAt": "2026-11-02T04:34:41.738Z"
+  },
+  {
+    "code": "34",
+    "kind": "young",
+    "file": "34-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=34",
+    "retrievedAt": "2026-11-02T04:34:41.770Z"
+  },
+  {
+    "code": "34",
+    "kind": "older",
+    "file": "34-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=34",
+    "retrievedAt": "2026-11-02T04:34:41.936Z"
+  },
+  {
+    "code": "35",
+    "kind": "older",
+    "file": "35-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=35",
+    "retrievedAt": "2026-11-02T04:34:42.108Z"
+  },
+  {
+    "code": "35",
+    "kind": "total",
+    "file": "35-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=35",
+    "retrievedAt": "2026-11-02T04:34:42.179Z"
+  },
+  {
+    "code": "35",
+    "kind": "young",
+    "file": "35-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=35",
+    "retrievedAt": "2026-11-02T04:34:42.306Z"
+  },
+  {
+    "code": "36",
+    "kind": "older",
+    "file": "36-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=36",
+    "retrievedAt": "2026-11-02T04:34:42.508Z"
+  },
+  {
+    "code": "36",
+    "kind": "total",
+    "file": "36-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=36",
+    "retrievedAt": "2026-11-02T04:34:42.539Z"
+  },
+  {
+    "code": "36",
+    "kind": "young",
+    "file": "36-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=36",
+    "retrievedAt": "2026-11-02T04:34:42.657Z"
+  },
+  {
+    "code": "37",
+    "kind": "older",
+    "file": "37-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=37",
+    "retrievedAt": "2026-11-02T04:34:42.879Z"
+  },
+  {
+    "code": "37",
+    "kind": "total",
+    "file": "37-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=37",
+    "retrievedAt": "2026-11-02T04:34:42.940Z"
+  },
+  {
+    "code": "37",
+    "kind": "young",
+    "file": "37-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=37",
+    "retrievedAt": "2026-11-02T04:34:43.017Z"
+  },
+  {
+    "code": "38",
+    "kind": "older",
+    "file": "38-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=38",
+    "retrievedAt": "2026-11-02T04:34:43.279Z"
+  },
+  {
+    "code": "38",
+    "kind": "total",
+    "file": "38-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=38",
+    "retrievedAt": "2026-11-02T04:34:43.316Z"
+  },
+  {
+    "code": "38",
+    "kind": "young",
+    "file": "38-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=38",
+    "retrievedAt": "2026-11-02T04:34:43.365Z"
+  },
+  {
+    "code": "39",
+    "kind": "older",
+    "file": "39-older.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3742&vStatJipyoId=5265&areaId=39",
+    "retrievedAt": "2026-11-02T04:34:43.663Z"
+  },
+  {
+    "code": "39",
+    "kind": "total",
+    "file": "39-total.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3737&vStatJipyoId=5232&areaId=39",
+    "retrievedAt": "2026-11-02T04:34:43.706Z"
+  },
+  {
+    "code": "39",
+    "kind": "young",
+    "file": "39-young.html",
+    "url": "https://kosis.kr/visual/populationKorea/PopulationDashBoardDetail.do?listId=A_02&statJipyoId=3743&vStatJipyoId=5250&areaId=39",
+    "retrievedAt": "2026-11-02T04:34:43.860Z"
+  }
+]

@@ -1,5 +1,9 @@
 .mobile-map-toggle,.map-touch-controls{display:none}
 .policy-loading{padding:24px;text-align:center}
+.projection-table{width:100%;border-collapse:collapse;font-size:13px;margin:18px 0}
+.projection-table caption{text-align:left;font-weight:700;margin-bottom:10px}
+.projection-table th,.projection-table td{padding:10px 4px;border-bottom:1px solid #8885;text-align:right}
+.projection-table th:first-child{text-align:left}
 .grid>*{min-width:0}
 @media(pointer:coarse){
   .map-touch-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0;font-size:12px;line-height:1.6}

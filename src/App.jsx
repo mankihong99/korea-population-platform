@@ -19,6 +19,8 @@ export default function App() {
   const [policyArea, setPolicyArea] = useState('');
   const [districtSelection, setDistrictSelection] = useState(null);
   const [provinceSelection, setProvinceSelection] = useState('');
+  const districtProvince = districtSelection?.sourceNames[latestYear]?.split(' ')[0]?.replace('강원특별자치도','강원도').replace('전북특별자치도','전라북도');
+  const forecastCode = Object.values(longTermByCode).find(r=>r.name===districtProvince)?.code || provinceSelection;
   const selectDistrict = region => {
     setDistrictSelection(region);
     setPolicyArea(region?.sourceNames[latestYear] || '');
@@ -28,9 +30,10 @@ export default function App() {
     setDistrictSelection(null);
     setPolicyArea(name || '');
   };
-  const openPolicies = () => {
-    if (mode === 'long-term') {
-      setPolicyArea(longTermByCode[provinceSelection]?.name || '');
+  const openPolicies = requestedCode => {
+    if (mode === 'long-term' || mode === 'forecast') {
+      const code = typeof requestedCode === 'string' ? requestedCode : mode === 'forecast' ? forecastCode : provinceSelection;
+      setPolicyArea(longTermByCode[code]?.name || '');
       setDistrictSelection(null);
     } else if (mode === 'district' || mode === 'forecast') {
       setPolicyArea(districtSelection?.sourceNames[latestYear] || '');
@@ -42,10 +45,10 @@ export default function App() {
     <nav className="population-modes" aria-label="인구 통계 모드">
       <button type="button" aria-pressed={mode === 'long-term'} onClick={() => setMode('long-term')}><strong>장기 변화</strong><span>시·도 · 1970~2025 · 추계인구</span></button>
       <button type="button" aria-pressed={mode === 'district'} onClick={() => setMode('district')}><strong>시·군·구 상세</strong><span>2014~2025 · 주민등록인구</span></button>
-      <button type="button" aria-pressed={mode === 'forecast'} onClick={() => setMode('forecast')}><strong>2050 인구 전망</strong><span>시·군·구 · 2026~2050 · 참고용 예상</span></button>
+      <button type="button" aria-pressed={mode === 'forecast'} onClick={() => setMode('forecast')}><strong>2072 인구 전망</strong><span>전국·시도 ~2072 · 공식 추계</span></button>
       <button type="button" aria-pressed={mode === 'policies'} onClick={openPolicies}><strong>지역정착 지원정책</strong><span>지역별 혜택 · 지원대상 · 신청 안내</span></button>
     </nav>
-    {mode === 'long-term' ? <LongTermView initialCode={provinceSelection} onRegionChange={selectProvince} onOpenPolicies={openPolicies} /> : mode === 'district' ? <DistrictView initialSelected={districtSelection} onRegionChange={selectDistrict} onOpenPolicies={openPolicies} /> : mode === 'forecast' ? <ForecastView initialSelected={districtSelection} onRegionChange={selectDistrict} onOpenPolicies={openPolicies} /> : <Suspense fallback={<p className="policy-loading" role="status">정책 자료를 불러오는 중입니다…</p>}><PolicyView area={policyArea} selected={districtSelection} onSelect={selectDistrict} /></Suspense>}
+    {mode === 'long-term' ? <LongTermView initialCode={provinceSelection} onRegionChange={selectProvince} onOpenPolicies={openPolicies} /> : mode === 'district' ? <DistrictView initialSelected={districtSelection} onRegionChange={selectDistrict} onOpenPolicies={openPolicies} /> : mode === 'forecast' ? <ForecastView initialCode={forecastCode} onRegionChange={selectProvince} onOpenPolicies={openPolicies} /> : <Suspense fallback={<p className="policy-loading" role="status">정책 자료를 불러오는 중입니다…</p>}><PolicyView area={policyArea} selected={districtSelection} onSelect={selectDistrict} /></Suspense>}
   </div>;
 }
 
