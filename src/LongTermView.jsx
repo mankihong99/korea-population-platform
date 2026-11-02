@@ -99,8 +99,7 @@ export default function LongTermView({ initialCode = '', onRegionChange, onOpenP
           <div className="notice population-source">
             인구 출처: <a href={data.sourceUrl} target="_blank" rel="noreferrer">{data.source}</a><br />
             1970~2025년 · 단위: 명 · 확인: {data.retrievedAt} · 원문 공표값을 저장해 사용하며 임의 보간하지 않습니다.<br />
-            2023~2025년: <a href={data.methodologyUrl} target="_blank" rel="noreferrer">2022년 기준 시·도 장래인구추계</a>의 전망 구간.<br />
-            광역시 분리 이전의 소급 추계도 원자료 그대로 사용합니다. 경계 변경의 영향이 포함될 수 있어, 색상을 출생·사망·이동만의 변화로 해석할 수 없습니다.
+            2023~2025년: <a href={data.methodologyUrl} target="_blank" rel="noreferrer">2022년 기준 시·도 장래인구추계</a>의 전망 구간.
           </div>
         </div>
         <aside>{selected ? <>
