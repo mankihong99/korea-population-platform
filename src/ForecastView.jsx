@@ -31,12 +31,12 @@ export default function ForecastView({initialCode='',initialSelected=null,onRegi
   },[playing,code]);
   const chart=availableYears.map(y=>({year:y,...projectionValue(region,y)}));
   return <main><section className="hero">
-    <div className="mode-explanation"><strong>2072 인구 전망 · 공식 시·도 장래인구추계</strong><p>2022년 기준 KOSIS 장래인구추계의 공표값을 사용합니다. 공식 추계에 출생·사망·이동 가정과 연령구조 변화가 반영되어 있습니다. 자체 머신러닝 예측이나 주민등록인구에 평균 변화율을 적용한 결과가 아닙니다.</p></div>
+    <div className="mode-explanation"><strong>2072 인구 전망 · 공식 시·도 장래인구추계</strong><p>2022년 기준 KOSIS 장래인구추계의 공표값을 사용합니다. 공식 추계에 출생·사망·이동 가정과 연령구조 변화가 반영되어 있습니다.</p></div>
     <div className="stats"><div><small>선택 연도 · 공식 전망값</small><strong>{year}년</strong></div><div><small>{nameOf(region)} 총인구 · 추계 기준</small><strong>{fmt(values.total)}</strong></div><div><small>65세 이상 비중 · {nameOf(region)}</small><strong>{(values.older/values.total*100).toFixed(1)}%</strong></div></div>
     <div className="grid"><div className="mapcard">
       <div className="maptitle"><div><h2>공식 인구 전망 · 전국 2072년까지</h2><p>시·도를 선택하면 성별 인구와 연령계층별 변화를 함께 확인할 수 있습니다.</p></div></div>
       <YearControls year={year} playing={playing} onYearChange={setYear} onPlayingChange={setPlaying} config={controlsConfig}/>
-      <p className="projection-notice">전국과 17개 시·도 모두 2072년까지 제공합니다. 2053년 이후 시·도 값은 2022년 기준 공식 「100년 추계」 부록의 중위 가정 자료입니다. 장기 전망은 추계 가정에 따라 달라질 수 있습니다.</p><div className="map"><div className="map-controls"><label>시·도 선택<select value={code} onChange={e=>choose(e.target.value)}><option value="">전국</option>{data.regions.map(r=><option key={r.code} value={r.code}>{nameOf(r)}</option>)}</select></label></div>
+      <div className="map"><div className="map-controls"><label>시·도 선택<select value={code} onChange={e=>choose(e.target.value)}><option value="">전국</option>{data.regions.map(r=><option key={r.code} value={r.code}>{nameOf(r)}</option>)}</select></label></div>
         <svg className="korea-map" viewBox="0 0 600 600" aria-labelledby="projection-title projection-description">
           <defs><pattern id="projection-missing" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#fafafa"/><path d="M0,6L6,0" stroke="#aaa"/></pattern></defs><title id="projection-title">시·도별 공식 장래인구추계 지도</title><desc id="projection-description">{year}년 추계인구의 2025년 대비 증감률입니다. 선택하면 연령·성별 인구를 표시합니다.</desc>
           {paths.map(p=>{const r=projectionByCode[p.code], diff=projectionChange(r,year);return <path key={p.code} d={p.d} fill={diff===null?'url(#projection-missing)':populationColor(diff)} fillRule="evenodd" className={'province'+(code===p.code?' is-selected':'')} role="button" tabIndex={0} aria-pressed={code===p.code} aria-label={`${nameOf(r)} · ${year}년 추계인구 ${fmt(r.values[year]?.total)}`} onClick={()=>choose(p.code)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(p.code);}}}><title>{diff===null ? `${nameOf(r)} · 해당 연도 자료 없음` : `${nameOf(r)} · 2025년 대비 ${diff.toFixed(1)}%`}</title></path>;})}
@@ -47,13 +47,12 @@ export default function ForecastView({initialCode='',initialSelected=null,onRegi
       </div>
     </div><aside>
       <div className="location"><div><small>선택 지역 · 공식 추계 기준</small><h2>{nameOf(region)}</h2></div></div>
-      <p className="projection-notice">2025년 값도 전망값입니다. 고령인구는 총인구에 포함되며, 별도로 빼지 않습니다.</p>
       <div className="numbers"><div><small>2025년 추계인구</small><b>{fmt(baseline.total)}</b></div><div><small>2025년 대비 변화</small><b>{change>0?'+':''}{change.toFixed(1)}%</b></div></div>
       <table className="projection-table"><caption>{year}년 성별·연령계층별 인구</caption><thead><tr><th scope="col">구분</th><th scope="col">인구</th><th scope="col">비중</th></tr></thead><tbody>{[['남자','male'],['여자','female'],['0~14세','young'],['15~64세','working'],['65세 이상','older']].map(([label,key])=><tr key={key}><th scope="row">{label}</th><td>{fmt(values[key])}</td><td>{(values[key]/values.total*100).toFixed(1)}%</td></tr>)}</tbody></table>
       <p className="population-caution">성별 합계와 연령계층 합계는 각각 총인구입니다. 15~64세는 총인구에서 0~14세와 65세 이상을 뺀 값입니다.</p>
       <div className="chart"><h3>총인구와 고령인구 전망</h3><ResponsiveContainer width="100%" height={240}><LineChart data={chart} margin={{left:0,right:12,top:8}}><XAxis dataKey="year" type="number" domain={[2025,endYear]} ticks={[2025,...[2030,2040,2050,2060,2070].filter(y=>y<endYear),endYear]}/><YAxis width={55} tickFormatter={v=>`${Math.round(v/10000)}만`}/><Tooltip labelFormatter={v=>`${v}년 · 공식 전망값`} formatter={(v,n)=>[fmt(v),n]}/><ReferenceLine x={year} stroke="#737373"/><Line dataKey="total" name="총인구" stroke="var(--chart-ink, #111111)" strokeDasharray="5 4" dot={false}/><Line dataKey="older" name="65세 이상" stroke="#b45309" strokeDasharray="3 3" dot={false}/></LineChart></ResponsiveContainer><p className="population-caution">총인구와 65세 이상 인구 모두 공식 전망값입니다.</p></div>
       <PolicyLink area={code?nameOf(region):''} onOpen={()=>{onRegionChange?.(code,nameOf(region));onOpenPolicies?.(code);}}/>
     </aside></div>
-    <div className="notice population-source">출처: <a href={data.sourceUrl} target="_blank" rel="noreferrer">{data.source}</a> · 확인: {data.retrievedAt}<br/><a href={data.longRangeSourceUrl} target="_blank" rel="noreferrer">시도편(2022년 기준) · 부록 100년 추계 · 중위 가정</a><br/><a href={data.methodologyUrl} target="_blank" rel="noreferrer">공식 추계의 출생·사망·이동 가정 및 작성 방법</a><br/>성·연령별 인구에 인구변동요인 가정을 적용한 공식 결과를 표시합니다. 개별 연령별 생존확률을 이 웹사이트에서 재계산하지 않습니다. 주민등록인구와 집계 기준이 다르며, 2025년 실측값으로 재조정한 모형도 아닙니다. 추계 가정이 바뀌면 전망도 달라집니다.</div>
+    <div className="notice population-source">출처: <a href={data.sourceUrl} target="_blank" rel="noreferrer">{data.source}</a> · 확인: {data.retrievedAt}<br/><a href={data.longRangeSourceUrl} target="_blank" rel="noreferrer">시도편(2022년 기준) · 부록 100년 추계 · 중위 가정</a><br/><a href={data.methodologyUrl} target="_blank" rel="noreferrer">공식 추계의 출생·사망·이동 가정 및 작성 방법</a></div>
     </section><footer>2072 인구 전망 · 전국·시도 2072년까지 · 2022년 기준 공식 장래인구추계</footer></main>;
 }

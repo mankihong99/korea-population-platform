@@ -79,7 +79,7 @@ try {
     await page.getByRole('button',{name:'이 지역 지원정책 보기 →',exact:true}).click();
     await page.getByRole('heading',{name:'강원도 · 지역정착 지원정책',exact:true}).waitFor();
     await checkWidth();
-    await page.getByRole('button',{name:'시·군·구 상세',exact:false}).click();
+    await page.getByRole('button',{name:'지역별 인구 변화',exact:false}).click();
     await checkWidth();
     await theme.click();
     await page.waitForFunction(()=>document.documentElement.dataset.theme==='light');

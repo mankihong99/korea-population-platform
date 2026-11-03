@@ -19,11 +19,11 @@ const controlsConfig = {
   note: 'KOSIS 시·도별 추계인구 · 2023~2025년은 2022년 기준 전망 구간 · 주민등록인구와 별도 통계',
 };
 
-export default function LongTermView({ initialCode = '', onRegionChange, onOpenPolicies } = {}) {
-  const [year, setYear] = useState(1970);
+export default function LongTermView({ initialCode = '', initialYear = 1970, onRegionChange, onOpenPolicies, onDrillDown } = {}) {
+  const [year, setYear] = useState(initialYear);
   const [playing, setPlaying] = useState(false);
   const [selectedCode, updateSelectedCode] = useState(initialCode);
-  const setSelectedCode = code => { updateSelectedCode(code); onRegionChange?.(code, longTermByCode[code]?.name || ''); };
+  const setSelectedCode = code => { updateSelectedCode(code); onRegionChange?.(code, longTermByCode[code]?.name || ''); if(code&&onDrillDown){setPlaying(false);onDrillDown(code,year);} };
   const selected = longTermByCode[selectedCode];
   useEffect(() => {
     if (!playing) return;
@@ -43,8 +43,7 @@ export default function LongTermView({ initialCode = '', onRegionChange, onOpenP
   return <main>
     <section className="hero">
       <div className="mode-explanation">
-        <strong>장기 변화 · 시·도별 추계인구</strong>
-        <p>1970년부터의 흐름을 살펴보는 통계청·KOSIS 추계 시계열입니다. 주민등록인구와 집계 대상·기준이 달라 두 모드의 수치를 직접 이어 비교하지 않습니다.</p>
+        <strong>지역별 인구 변화 · 시·도별 장기 추계</strong>
       </div>
       <div className="stats">
         <div><small>선택 연도 · {periodLabel(year)}</small><strong>{year}년</strong></div>
@@ -53,7 +52,7 @@ export default function LongTermView({ initialCode = '', onRegionChange, onOpenP
       </div>
       <div className="grid">
         <div className="mapcard">
-          <div className="maptitle"><div><h2>시·도별 장기 인구 변화</h2><p>연도와 시·도를 선택해 1970년 이후 추계인구를 확인하세요.</p></div></div>
+          <div className="maptitle"><div><h2>시·도별 장기 인구 변화</h2><p>{onDrillDown?'시·도를 클릭하면 해당 지역의 시·군·구 지도와 주민등록인구를 확인할 수 있습니다.':'연도와 시·도를 선택해 1970년 이후 추계인구를 확인하세요.'}</p></div></div>
           <YearControls year={year} playing={playing} onYearChange={setYear} onPlayingChange={setPlaying} config={controlsConfig} />
           {year > data.projectionBaseYear && <p className="projection-notice">{year}년 값은 2022년 기준 추계의 전망값입니다. 해당 연도 주민등록 실측값은 ‘시·군·구 상세’에서 확인하세요.</p>}
           <div className="map">
@@ -98,7 +97,6 @@ export default function LongTermView({ initialCode = '', onRegionChange, onOpenP
           </div>
           <div className="notice population-source">
             인구 출처: <a href={data.sourceUrl} target="_blank" rel="noreferrer">{data.source}</a><br />
-            1970~2025년 · 단위: 명 · 확인: {data.retrievedAt} · 원문 공표값을 저장해 사용하며 임의 보간하지 않습니다.<br />
             2023~2025년: <a href={data.methodologyUrl} target="_blank" rel="noreferrer">2022년 기준 시·도 장래인구추계</a>의 전망 구간.
           </div>
         </div>

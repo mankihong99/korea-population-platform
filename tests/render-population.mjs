@@ -11,8 +11,8 @@ try {
   const { default: Controls } = await vite.ssrLoadModule('/src/YearControls.jsx');
   const { regionsByCode } = await vite.ssrLoadModule('/src/data/data.js');
   const home = renderToStaticMarkup(React.createElement(App));
-  assert.ok(home.includes('장기 변화'));
-  assert.ok(home.includes('시·군·구 상세'));
+  assert.ok(home.includes('지역별 인구 변화'));
+  assert.ok(home.includes('시·도 장기 추계 · 시·군·구 주민등록인구'));
   assert.ok(home.includes('2072 인구 전망'));
   assert.ok(home.includes('지역별 혜택 · 지원대상 · 신청 안내'));
   assert.ok(!home.includes('id="region-policies"'));
@@ -41,7 +41,6 @@ try {
   assert.ok(outlook.includes('공식 시·도 장래인구추계'));
   assert.ok(outlook.includes('36,222,293명'));
   assert.ok(outlook.includes('17,270,735명'));
-  assert.ok(outlook.includes('2025년 값도 전망값'));
   assert.equal((outlook.match(/role="button"/g) || []).length, 17);
   assert.ok(outlook.includes('2025년 대비'));
   assert.ok(home.includes('32,240,827명'));

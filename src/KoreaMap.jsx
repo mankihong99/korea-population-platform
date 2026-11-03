@@ -20,14 +20,14 @@ function fitBounds(items) {
   return [(x + right - size) / 2, (y + bottom - size) / 2, size, size];
 }
 
-export default function KoreaMap({ selected, onSelect, year, forecast, policyMode = false }) {
+export default function KoreaMap({ selected, onSelect, year, forecast, policyMode = false, initialProvince = '', onProvinceChange, onNational }) {
   const getPopulation = forecast?.population || pop;
   const getChange = forecast?.change || populationChange;
   const labelChange = forecast?.label || changeLabel;
   const baseYear = forecast?.baseYear || baselineYear;
-  const [provinceCode, setProvinceCode] = useState('');
+  const [provinceCode, setProvinceCode] = useState(initialProvince);
   const districtCode = selected?.code || '';
-  const [view, setView] = useState(fullView);
+  const [view, setView] = useState(()=>initialProvince ? fitBounds(districts.filter(d=>d.code.startsWith(initialProvince))) : fullView);
   const gesture = useRef(null);
   const suppressClick = useRef(false);
   const [dragging, setDragging] = useState(false);
@@ -75,9 +75,10 @@ export default function KoreaMap({ selected, onSelect, year, forecast, policyMod
     if (region) onSelect(region);
     if (zoom) setView(fitBounds([item]));
   };
-  const reset = () => { setProvinceCode(''); onSelect(null); setView(fullView); };
+  const reset = () => { setProvinceCode(''); onSelect(null); setView(fullView); onNational?.(); };
   const changeProvince = code => {
     setProvinceCode(code); onSelect(null);
+    onProvinceChange?.(code);
     setView(code ? fitBounds(districts.filter(d => d.code.startsWith(code))) : fullView);
   };
   const zoom = factor => setView(([x, y, w, h]) => {

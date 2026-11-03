@@ -1,4 +1,7 @@
 .map{position:relative;background:#fff;padding:0 14px 12px}
+.region-navigation{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.region-navigation button{padding:10px 14px;min-height:44px;border:1px solid currentColor;border-radius:8px;background:transparent;color:inherit;cursor:pointer}
+.region-transition{font-size:13px;line-height:1.7;margin:0 0 18px;color:inherit}
 :root{accent-color:#111111}
 a{color:#111111}
 a:visited{color:#404040}

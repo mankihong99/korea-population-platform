@@ -19,10 +19,24 @@ export default function App() {
   const [policyArea, setPolicyArea] = useState('');
   const [districtSelection, setDistrictSelection] = useState(null);
   const [provinceSelection, setProvinceSelection] = useState('');
+  const [longTermYear,setLongTermYear]=useState(1970);
+  const [districtStartYear,setDistrictStartYear]=useState(latestYear);
+  const [populationLevel,setPopulationLevel]=useState('long-term');
+  const drillDown=(code,year)=>{
+    selectProvince(code,longTermByCode[code]?.name);
+    setLongTermYear(year);
+    setDistrictStartYear(Math.max(baselineYear,Math.min(latestYear,year)));
+    setPopulationLevel('district');setMode('district');
+  };
+  const backToProvinces=(national=false)=>{
+    if(national)selectProvince('','');
+    setPopulationLevel('long-term');setMode('long-term');
+  };
   const districtProvince = districtSelection?.sourceNames[latestYear]?.split(' ')[0]?.replace('강원특별자치도','강원도').replace('전북특별자치도','전라북도');
   const forecastCode = Object.values(longTermByCode).find(r=>r.name===districtProvince)?.code || provinceSelection;
   const selectDistrict = region => {
     setDistrictSelection(region);
+    if(region)setProvinceSelection(region.code.slice(0,2));
     setPolicyArea(region?.sourceNames[latestYear] || '');
   };
   const selectProvince = (code, name) => {
@@ -36,24 +50,23 @@ export default function App() {
       setPolicyArea(longTermByCode[code]?.name || '');
       setDistrictSelection(null);
     } else if (mode === 'district' || mode === 'forecast') {
-      setPolicyArea(districtSelection?.sourceNames[latestYear] || '');
+      setPolicyArea(districtSelection?.sourceNames[latestYear] || longTermByCode[provinceSelection]?.name || '');
     }
     setMode('policies');
   };
   return <div className="app">
     <header><div><b>대한민국 인구변화</b><span>& 지역정착 정보 플랫폼</span></div><ThemeToggle /></header>
     <nav className="population-modes" aria-label="인구 통계 모드">
-      <button type="button" aria-pressed={mode === 'long-term'} onClick={() => setMode('long-term')}><strong>장기 변화</strong><span>시·도 · 1970~2025 · 추계인구</span></button>
-      <button type="button" aria-pressed={mode === 'district'} onClick={() => setMode('district')}><strong>시·군·구 상세</strong><span>2014~2025 · 주민등록인구</span></button>
+      <button type="button" aria-pressed={mode === 'long-term'||mode === 'district'} onClick={() => setMode(populationLevel)}><strong>지역별 인구 변화</strong><span>시·도 장기 추계 · 시·군·구 주민등록인구</span></button>
       <button type="button" aria-pressed={mode === 'forecast'} onClick={() => setMode('forecast')}><strong>2072 인구 전망</strong><span>전국·시도 ~2072 · 공식 추계</span></button>
       <button type="button" aria-pressed={mode === 'policies'} onClick={openPolicies}><strong>지역정착 지원정책</strong><span>지역별 혜택 · 지원대상 · 신청 안내</span></button>
     </nav>
-    {mode === 'long-term' ? <LongTermView initialCode={provinceSelection} onRegionChange={selectProvince} onOpenPolicies={openPolicies} /> : mode === 'district' ? <DistrictView initialSelected={districtSelection} onRegionChange={selectDistrict} onOpenPolicies={openPolicies} /> : mode === 'forecast' ? <ForecastView initialCode={forecastCode} onRegionChange={selectProvince} onOpenPolicies={openPolicies} /> : <Suspense fallback={<p className="policy-loading" role="status">정책 자료를 불러오는 중입니다…</p>}><PolicyView area={policyArea} selected={districtSelection} onSelect={selectDistrict} /></Suspense>}
+    {mode === 'long-term' ? <LongTermView initialCode={provinceSelection} initialYear={longTermYear} onDrillDown={drillDown} onRegionChange={selectProvince} onOpenPolicies={openPolicies} /> : mode === 'district' ? <DistrictView initialSelected={districtSelection} initialProvince={provinceSelection} initialYear={districtStartYear} fromYear={longTermYear} onBack={()=>backToProvinces(false)} onNational={()=>backToProvinces(true)} onProvinceChange={code=>selectProvince(code,longTermByCode[code]?.name)} onRegionChange={selectDistrict} onOpenPolicies={openPolicies} /> : mode === 'forecast' ? <ForecastView initialCode={forecastCode} onRegionChange={selectProvince} onOpenPolicies={openPolicies} /> : <Suspense fallback={<p className="policy-loading" role="status">정책 자료를 불러오는 중입니다…</p>}><PolicyView area={policyArea} selected={districtSelection} onSelect={selectDistrict} /></Suspense>}
   </div>;
 }
 
-export function DistrictView({ initialSelected = null, onRegionChange, onOpenPolicies } = {}) {
-  const [year, setYear] = useState(latestYear);
+export function DistrictView({ initialSelected = null, initialProvince = '', initialYear = latestYear, fromYear, onBack, onNational, onProvinceChange, onRegionChange, onOpenPolicies } = {}) {
+  const [year, setYear] = useState(initialYear);
   const [playing, setPlaying] = useState(false);
   const [selected, updateSelected] = useState(initialSelected);
   const setSelected = region => { updateSelected(region); onRegionChange?.(region); };
@@ -74,7 +87,9 @@ export function DistrictView({ initialSelected = null, onRegionChange, onOpenPol
   return <div className="app">
     <main>
       <section className="hero">
+        {onBack&&<div className="region-navigation"><button type="button" onClick={onNational}>← 전국 지도 보기</button><button type="button" onClick={onBack}>{longTermByCode[initialProvince]?.name||'시·도'} 장기 추계 보기</button></div>}
         <div className="mode-explanation"><strong>시·군·구 상세 · 실제 주민등록인구</strong><p>행정안전부의 매년 12월 말 공표값입니다. 장기 모드의 추계인구와는 별도 통계이며, 색상은 2014년을 기준으로 계산합니다.</p></div>
+        {fromYear<baselineYear&&<p className="region-transition" role="status">시·군·구 주민등록인구는 {baselineYear}년부터 제공되어, 시·도에서 선택한 {fromYear}년 대신 {initialYear}년으로 전환했습니다.</p>}
         <div className="stats">
           <div><small>선택 시점 · 연말 기준</small><strong>{year}년 12월</strong></div>
           <div><small>전국 주민등록인구 · 외국인 제외</small><strong>{fmt(populationMetadata.nationalTotals[year] ?? null)}</strong></div>
@@ -84,7 +99,7 @@ export function DistrictView({ initialSelected = null, onRegionChange, onOpenPol
           <div className="mapcard">
             <div className="maptitle"><div><h2>시·군·구별 인구 변화 지도</h2><p>지역을 선택하면 해당 시·군·구의 실제 연도별 인구를 확인할 수 있습니다.</p></div></div>
             <YearControls year={year} playing={playing} onYearChange={setYear} onPlayingChange={setPlaying} />
-            <KoreaMap selected={selected} onSelect={setSelected} year={year} />
+            <KoreaMap selected={selected} onSelect={setSelected} year={year} initialProvince={initialProvince} onProvinceChange={onProvinceChange} onNational={onNational} />
             <div className="notice population-source">
               인구 출처: <a href={populationMetadata.sourceUrl} target="_blank" rel="noreferrer">행정안전부 주민등록 인구통계</a><br />
               {baselineYear}~{latestYear}년 매년 12월 말 공표값 · 단위: 명 · 자료 확인: {populationMetadata.retrievedAt}<br />
@@ -113,7 +128,7 @@ export function DistrictView({ initialSelected = null, onRegionChange, onOpenPol
               <div className={'badge population-badge ' + (change === null || change === 0 ? 'neutral' : change > 0 ? 'growth' : 'decline')}>{changeLabel(change)}</div>
               <p className="population-caution">각 연도 행정구역 기준 공표값입니다. 경계 조정·통합·편입에 따른 인구 변동도 포함됩니다.</p>
             </> : <div className="empty-region"><MapPin /><h2>시·군·구를 선택하세요</h2><p>지도나 지역 목록에서 선택하면 해당 지역의 실제 인구와 연도별 추이를 표시합니다.</p></div>}
-            <PolicyLink area={selected?.sourceNames[latestYear] || ''} onOpen={onOpenPolicies} />
+            <PolicyLink area={selected?.sourceNames[latestYear] || longTermByCode[initialProvince]?.name || ''} onOpen={onOpenPolicies} />
           </aside>
         </div>
       </section>
